@@ -1102,107 +1102,130 @@
     }
     .nav-mobile-book:hover { background: var(--gold-light); }
 
-    /* ── RESPONSIVE ── */
+    /* ── RESPONSIVE: tablet / small (≤900px) ── */
     @media (max-width: 900px) {
       nav { padding: 1.25rem 1.5rem; }
       .nav-links { display: none; }
       .nav-book-btn { display: none; }
       .nav-hamburger { display: flex; }
       .hero-side-info { display: none; }
-      /* Scale down swirl decorations */
-      .swirl-section::before,
-      .swirl-section::after {
-        width: 260px;
-        height: 260px;
-      }
+      .swirl-section::before, .swirl-section::after { width: 260px; height: 260px; }
       /* Services mosaic → 2-col */
-      .svc-mosaic {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-      }
+      .svc-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
       .svc-item-1, .svc-item-2, .svc-item-3, .svc-item-4, .svc-item-5 {
-        grid-column: auto;
-        grid-row: auto;
-        height: 220px;
+        grid-column: auto; grid-row: auto; height: 220px;
       }
-      .svc-item-1 {
-        grid-column: 1 / -1;
-        height: 280px;
-      }
+      .svc-item-1 { grid-column: 1 / -1; height: 280px; }
       .about { grid-template-columns: 1fr; }
       .about-content { padding: 4rem 2rem; }
       .about-frame { padding: 2rem; }
-      .photo-book {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-      }
+      .photo-book { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
       .photo-print { grid-column: auto !important; grid-row: auto !important; transform: none !important; }
       .photo-print img { height: 200px !important; min-height: unset !important; }
       .footer-inner { grid-template-columns: 1fr 1fr; }
       .services, .gallery, .testimonials, .book-cta { padding: 5rem 1.5rem; }
     }
-    @media (max-width: 600px) {
-      .swirl-section::before,
-      .swirl-section::after { display: none; }
 
-      /* ── Issue 1: Hero scroll — bulletproof centering ── */
-      .hero-scroll {
-        left: 0;
-        right: 0;
-        width: 100%;
-        transform: none;
+    /* ── FOLDABLE UNFOLDED (769px–900px) — restore desktop-like layout ── */
+    @media (min-width: 769px) and (max-width: 900px) {
+      /* Nav: show links, hide hamburger */
+      .nav-links { display: flex; gap: 1.6rem; }
+      .nav-book-btn { display: inline-block; }
+      .nav-hamburger { display: none; }
+      /* Hero: restore side info panel */
+      .hero-side-info { display: flex; }
+      /* Services: restore desktop mosaic */
+      .svc-mosaic {
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 260px 180px;
       }
+      .svc-item-1 { grid-column: 1/6; grid-row: 1/3; height: auto; }
+      .svc-item-2 { grid-column: 6/13; grid-row: 1/2; height: auto; }
+      .svc-item-3 { grid-column: 6/9; grid-row: 2/3; height: auto; }
+      .svc-item-4 { grid-column: 9/11; grid-row: 2/3; height: auto; }
+      .svc-item-5 { grid-column: 11/13; grid-row: 2/3; height: auto; }
+      /* About: restore 2-col */
+      .about { grid-template-columns: 1fr 1fr; }
+      .about-content { padding: 5rem 3rem 5rem 4rem; }
+      .about-frame { padding: 3rem; }
+      /* Gallery: restore desktop photo-book */
+      .photo-book {
+        grid-template-columns: 1fr 1.6fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 2rem;
+      }
+      .photo-print:nth-child(1) { grid-column: 1/2; grid-row: 1/2; align-self: end; }
+      .photo-print:nth-child(2) { grid-column: 2/3; grid-row: 1/3; }
+      .photo-print:nth-child(3) { grid-column: 3/4; grid-row: 1/2; align-self: end; }
+      .photo-print:nth-child(4) { grid-column: 1/2; grid-row: 2/3; align-self: start; }
+      .photo-print:nth-child(5) { grid-column: 3/4; grid-row: 2/3; align-self: start; display: block; }
+      .photo-print img { height: 180px !important; }
+      .photo-print:nth-child(2) img { min-height: 360px !important; height: 0 !important; }
+      /* Footer: restore 4-col */
+      .footer-inner { grid-template-columns: 2fr 1fr 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .swirl-section::before, .swirl-section::after { display: none; }
+
+      /* ── Hero scroll centering ── */
+      .hero-scroll { left: 0; right: 0; width: 100%; transform: none; }
+
+      /* ── Hero: compact hours panel top-left ── */
+      .hero-side-info {
+        display: flex;
+        left: 1rem;
+        top: 68px;
+        gap: 0.6rem;
+      }
+      .hero-hours {
+        font-size: 0.42rem;
+        letter-spacing: 0.08em;
+        gap: 0;
+      }
+      .hero-hours::before { display: none; }
+      .hours-row { grid-template-columns: 1.8rem auto; padding: 0.12rem 0; }
+      .hero-instagram { display: none; }
 
       /* ── Hero text ── */
       .hero-wordmark-main { white-space: normal; text-align: center; }
       .hero-cta-group { flex-direction: column; align-items: center; }
       .hero-description { text-align: center; }
 
-      /* ── Issue 2: About — centre stats + tighten image spacing ── */
+      /* ── About ── */
       .about-content { padding: 3.5rem 2rem 1.5rem; }
       .about-stats { gap: 1.5rem; justify-content: center; }
-      .about-frame {
-        padding: 1.5rem 2rem 3.5rem;
-        justify-content: center;
-      }
+      .about-frame { padding: 1.5rem 2rem 3.5rem; justify-content: center; }
       .about-frame-mat { max-width: 320px; }
 
       /* ── Services → single column ── */
       .svc-mosaic { grid-template-columns: 1fr; }
       .svc-item-1 { grid-column: auto; height: 240px; }
 
-      /* ── Issue 3: Gallery — 2-col, compact, fix crops ── */
-      .photo-book {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
+      /* ── Gallery — 2-col, fix all crops ── */
+      .photo-book { grid-template-columns: 1fr 1fr; gap: 1rem; }
       .photo-print:nth-child(5) { display: none; }
       .photo-print img {
         height: 160px !important;
         min-height: unset !important;
-        object-position: center center !important;
+        object-position: center 30% !important;
       }
+      /* Photo 3 specifically: show upper portion of image */
+      .photo-print:nth-child(3) img { object-position: center top !important; }
 
-      /* ── Issue 4: Footer — condense below logo ── */
+      /* ── Footer — logo full-width, then 2-col Services + Contact only ── */
       footer { padding: 2.5rem 1.5rem 1.5rem; }
       .footer-inner {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 1.5rem 1rem;
         padding-bottom: 1.5rem;
       }
       .footer-inner > div:first-child { grid-column: 1 / -1; }
-      .footer-col h4 { font-size: 0.55rem; margin-bottom: 0.6rem; }
-      .footer-col li { font-size: 0.68rem; margin-bottom: 0.35rem; }
-      .footer-hours-list::before { display: none; }
-      .footer-hours-row {
-        display: flex !important;
-        gap: 0.3rem;
-        font-size: 0.6rem;
-        padding: 0.08rem 0 !important;
-        margin-bottom: 0 !important;
-      }
-      .footer-tagline { white-space: normal; font-size: 0.72rem; }
-      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      /* Hide Visit Us (3rd child) — hours are shown in hero instead */
+      .footer-inner > div:nth-child(3) { display: none; }
+      .footer-col h4 { font-size: 0.6rem; margin-bottom: 0.75rem; }
+      .footer-col li { font-size: 0.75rem; margin-bottom: 0.4rem; }
+      .footer-tagline { white-space: normal; font-size: 0.75rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; font-size: 0.65rem; }
     }
 
     /* ── SCROLL REVEAL ── */
