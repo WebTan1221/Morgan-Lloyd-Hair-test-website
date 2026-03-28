@@ -1144,17 +1144,64 @@
     @media (max-width: 600px) {
       .swirl-section::before,
       .swirl-section::after { display: none; }
+
+      /* ── Issue 1: Hero scroll — bulletproof centering ── */
+      .hero-scroll {
+        left: 0;
+        right: 0;
+        width: 100%;
+        transform: none;
+      }
+
+      /* ── Hero text ── */
       .hero-wordmark-main { white-space: normal; text-align: center; }
       .hero-cta-group { flex-direction: column; align-items: center; }
       .hero-description { text-align: center; }
-      .about-stats { gap: 1.5rem; }
-      /* Services → single column */
+
+      /* ── Issue 2: About — centre stats + tighten image spacing ── */
+      .about-content { padding: 3.5rem 2rem 1.5rem; }
+      .about-stats { gap: 1.5rem; justify-content: center; }
+      .about-frame {
+        padding: 1.5rem 2rem 3.5rem;
+        justify-content: center;
+      }
+      .about-frame-mat { max-width: 320px; }
+
+      /* ── Services → single column ── */
       .svc-mosaic { grid-template-columns: 1fr; }
       .svc-item-1 { grid-column: auto; height: 240px; }
-      /* Gallery → single column */
-      .photo-book { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; }
-      .footer-tagline { white-space: normal; }
+
+      /* ── Issue 3: Gallery — 2-col, compact, fix crops ── */
+      .photo-book {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .photo-print:nth-child(5) { display: none; }
+      .photo-print img {
+        height: 160px !important;
+        min-height: unset !important;
+        object-position: center center !important;
+      }
+
+      /* ── Issue 4: Footer — condense below logo ── */
+      footer { padding: 2.5rem 1.5rem 1.5rem; }
+      .footer-inner {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.5rem 1rem;
+        padding-bottom: 1.5rem;
+      }
+      .footer-inner > div:first-child { grid-column: 1 / -1; }
+      .footer-col h4 { font-size: 0.55rem; margin-bottom: 0.6rem; }
+      .footer-col li { font-size: 0.68rem; margin-bottom: 0.35rem; }
+      .footer-hours-list::before { display: none; }
+      .footer-hours-row {
+        display: flex !important;
+        gap: 0.3rem;
+        font-size: 0.6rem;
+        padding: 0.08rem 0 !important;
+        margin-bottom: 0 !important;
+      }
+      .footer-tagline { white-space: normal; font-size: 0.72rem; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
 
