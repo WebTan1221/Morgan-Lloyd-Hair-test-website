@@ -1126,15 +1126,12 @@
       .services, .gallery, .testimonials, .book-cta { padding: 5rem 1.5rem; }
     }
 
-    /* ── FOLDABLE UNFOLDED (769px–900px) — restore desktop-like layout ── */
+    /* ── FOLDABLE UNFOLDED (769px–900px): Z Fold, Razr — restore desktop layouts ── */
     @media (min-width: 769px) and (max-width: 900px) {
-      /* Nav: show links, hide hamburger */
       .nav-links { display: flex; gap: 1.6rem; }
       .nav-book-btn { display: inline-block; }
       .nav-hamburger { display: none; }
-      /* Hero: restore side info panel */
       .hero-side-info { display: flex; }
-      /* Services: restore desktop mosaic */
       .svc-mosaic {
         grid-template-columns: repeat(12, 1fr);
         grid-template-rows: 260px 180px;
@@ -1144,16 +1141,10 @@
       .svc-item-3 { grid-column: 6/9; grid-row: 2/3; height: auto; }
       .svc-item-4 { grid-column: 9/11; grid-row: 2/3; height: auto; }
       .svc-item-5 { grid-column: 11/13; grid-row: 2/3; height: auto; }
-      /* About: restore 2-col */
       .about { grid-template-columns: 1fr 1fr; }
       .about-content { padding: 5rem 3rem 5rem 4rem; }
       .about-frame { padding: 3rem; }
-      /* Gallery: restore desktop photo-book */
-      .photo-book {
-        grid-template-columns: 1fr 1.6fr 1fr;
-        grid-template-rows: auto auto;
-        gap: 2rem;
-      }
+      .photo-book { grid-template-columns: 1fr 1.6fr 1fr; grid-template-rows: auto auto; gap: 2rem; }
       .photo-print:nth-child(1) { grid-column: 1/2; grid-row: 1/2; align-self: end; }
       .photo-print:nth-child(2) { grid-column: 2/3; grid-row: 1/3; }
       .photo-print:nth-child(3) { grid-column: 3/4; grid-row: 1/2; align-self: end; }
@@ -1161,30 +1152,69 @@
       .photo-print:nth-child(5) { grid-column: 3/4; grid-row: 2/3; align-self: start; display: block; }
       .photo-print img { height: 180px !important; }
       .photo-print:nth-child(2) img { min-height: 360px !important; height: 0 !important; }
-      /* Footer: restore 4-col */
       .footer-inner { grid-template-columns: 2fr 1fr 1fr 1fr; }
+      /* Fix testimonials: force 3-col so 3 cards fill the row evenly */
+      .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+      .testimonial-card { padding: 2.5rem 1.75rem; }
+    }
+
+    /* ── LARGE FOLDABLE (900px–1200px): OnePlus Open, Pixel Fold, Z Fold 6 ── */
+    @media (min-width: 900px) and (max-width: 1200px) {
+      /* Nav: tighten link spacing */
+      .nav-links { gap: 1.8rem; }
+      nav { padding: 1.5rem 2rem; }
+      /* Fix testimonials: auto-fit gives 2-col here, force 3 */
+      .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+      .testimonial-card { padding: 2.5rem 1.75rem; }
+      /* Services: tighten section padding */
+      .services, .gallery, .testimonials, .book-cta { padding: 8rem 2rem; }
     }
     @media (max-width: 600px) {
       .swirl-section::before, .swirl-section::after { display: none; }
 
-      /* ── Hero scroll centering ── */
-      .hero-scroll { left: 0; right: 0; width: 100%; transform: none; }
-
-      /* ── Hero: compact hours panel top-left ── */
+      /* ── Hero: content top-aligned, hours below buttons, scroll at bottom ── */
+      .hero {
+        justify-content: flex-start;
+        padding: 5rem 1.5rem 2.5rem;
+        min-height: 100vh;
+        height: auto;
+      }
+      /* hero-inner: wordmark + divider + buttons + description */
+      .hero-inner { order: 1; margin-top: 1.5rem; }
+      /* hero-side-info: now static, centred, below hero-inner */
       .hero-side-info {
-        display: flex;
-        left: 1rem;
-        top: 68px;
-        gap: 0.6rem;
+        display: flex !important;
+        position: static;
+        order: 2;
+        left: auto;
+        top: auto;
+        margin-top: 1.75rem;
+        gap: 0;
+        align-self: center;
       }
       .hero-hours {
-        font-size: 0.42rem;
-        letter-spacing: 0.08em;
+        font-size: 0.5rem;
+        letter-spacing: 0.12em;
         gap: 0;
+        align-items: center;
       }
       .hero-hours::before { display: none; }
-      .hours-row { grid-template-columns: 1.8rem auto; padding: 0.12rem 0; }
+      .hours-row {
+        grid-template-columns: 2rem auto;
+        padding: 0.14rem 0;
+      }
       .hero-instagram { display: none; }
+      /* hero-scroll: now static, below hours */
+      .hero-scroll {
+        position: static;
+        order: 3;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        width: auto;
+        margin-top: 1.5rem;
+      }
 
       /* ── Hero text ── */
       .hero-wordmark-main { white-space: normal; text-align: center; }
@@ -1201,7 +1231,7 @@
       .svc-mosaic { grid-template-columns: 1fr; }
       .svc-item-1 { grid-column: auto; height: 240px; }
 
-      /* ── Gallery — 2-col, fix all crops ── */
+      /* ── Gallery — 2×2 grid, fix crops ── */
       .photo-book { grid-template-columns: 1fr 1fr; gap: 1rem; }
       .photo-print:nth-child(5) { display: none; }
       .photo-print img {
@@ -1209,18 +1239,12 @@
         min-height: unset !important;
         object-position: center 30% !important;
       }
-      /* Photo 3 specifically: show upper portion of image */
       .photo-print:nth-child(3) img { object-position: center top !important; }
 
-      /* ── Footer — logo full-width, then 2-col Services + Contact only ── */
+      /* ── Footer — logo full-width, 2-col Services + Contact ── */
       footer { padding: 2.5rem 1.5rem 1.5rem; }
-      .footer-inner {
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem 1rem;
-        padding-bottom: 1.5rem;
-      }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem; padding-bottom: 1.5rem; }
       .footer-inner > div:first-child { grid-column: 1 / -1; }
-      /* Hide Visit Us (3rd child) — hours are shown in hero instead */
       .footer-inner > div:nth-child(3) { display: none; }
       .footer-col h4 { font-size: 0.6rem; margin-bottom: 0.75rem; }
       .footer-col li { font-size: 0.75rem; margin-bottom: 0.4rem; }
