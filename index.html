@@ -1173,12 +1173,12 @@
       .photo-print:nth-child(5) { grid-column: 3/4; grid-row: 2/3; align-self: start; display: block; }
       .photo-print img { height: 180px !important; }
       .photo-print:nth-child(2) img { min-height: 360px !important; height: 0 !important; }
-      /* Book CTA: more vertical breathing room */
-      .book-cta { padding: 7rem 2rem; }
+      /* Book CTA: compensate for section-divider 3rem bottom padding above */
+      .book-cta { padding: 4rem 2rem 7rem; }
       /* Footer: logo full-width, 3-col Services | Visit Us | Contact */
       footer { padding: 3rem 2rem 2rem; }
       .footer-inner {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: auto auto 1fr;
         gap: 2rem;
         padding-bottom: 2rem;
       }
@@ -1221,12 +1221,12 @@
       .testimonial-card { padding: 2.5rem 1.75rem; }
       /* Section padding */
       .services, .gallery, .testimonials, .book-cta { padding: 8rem 2rem; }
-      /* Book CTA: more vertical breathing room */
-      .book-cta { padding: 7rem 2rem; }
+      /* Book CTA: compensate for section-divider 3rem bottom padding above */
+      .book-cta { padding: 4rem 2rem 7rem; }
       /* Footer: logo full-width, 3-col Services | Visit Us | Contact */
       footer { padding: 3rem 2rem 2rem; }
       .footer-inner {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: auto auto 1fr;
         gap: 2rem;
         padding-bottom: 2rem;
       }
