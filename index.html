@@ -1173,17 +1173,22 @@
       .photo-print:nth-child(5) { grid-column: 3/4; grid-row: 2/3; align-self: start; display: block; }
       .photo-print img { height: 180px !important; }
       .photo-print:nth-child(2) img { min-height: 360px !important; height: 0 !important; }
-      /* Footer: compact — logo full-width, 2-col Services + Contact, no Visit Us */
-      footer { padding: 1.5rem 2rem 1rem; }
+      /* Book CTA: more vertical breathing room */
+      .book-cta { padding: 7rem 2rem; }
+      /* Footer: logo full-width, 3-col Services | Visit Us | Contact */
+      footer { padding: 3rem 2rem 2rem; }
       .footer-inner {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem 1.5rem;
-        padding-bottom: 1rem;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem;
+        padding-bottom: 2rem;
       }
       .footer-inner > div:first-child { grid-column: 1 / -1; }
-      .footer-inner > div:nth-child(3) { display: none; }
-      .footer-col h4 { font-size: 0.6rem; margin-bottom: 0.6rem; }
-      .footer-col li { font-size: 0.75rem; margin-bottom: 0.35rem; }
+      .footer-inner > div:nth-child(3) { display: block; }
+      .footer-inner > div:nth-child(4) { text-align: right; }
+      .footer-inner > div:nth-child(4) h4 { text-align: right; }
+      .footer-inner > div:nth-child(4) ul { text-align: right; }
+      .footer-col h4 { font-size: 0.6rem; margin-bottom: 0.75rem; }
+      .footer-col li { font-size: 0.75rem; margin-bottom: 0.4rem; }
       .footer-col li a { word-break: break-all; overflow-wrap: break-word; }
       .footer-tagline { white-space: normal; font-size: 0.75rem; }
       .footer-bottom { font-size: 0.65rem; }
@@ -1216,17 +1221,22 @@
       .testimonial-card { padding: 2.5rem 1.75rem; }
       /* Section padding */
       .services, .gallery, .testimonials, .book-cta { padding: 8rem 2rem; }
-      /* Footer: compact — logo full-width, 2-col Services + Contact, no Visit Us */
-      footer { padding: 1.5rem 2rem 1rem; }
+      /* Book CTA: more vertical breathing room */
+      .book-cta { padding: 7rem 2rem; }
+      /* Footer: logo full-width, 3-col Services | Visit Us | Contact */
+      footer { padding: 3rem 2rem 2rem; }
       .footer-inner {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem 1.5rem;
-        padding-bottom: 1rem;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem;
+        padding-bottom: 2rem;
       }
       .footer-inner > div:first-child { grid-column: 1 / -1; }
-      .footer-inner > div:nth-child(3) { display: none; }
-      .footer-col h4 { font-size: 0.6rem; margin-bottom: 0.6rem; }
-      .footer-col li { font-size: 0.75rem; margin-bottom: 0.35rem; }
+      .footer-inner > div:nth-child(3) { display: block; }
+      .footer-inner > div:nth-child(4) { text-align: right; }
+      .footer-inner > div:nth-child(4) h4 { text-align: right; }
+      .footer-inner > div:nth-child(4) ul { text-align: right; }
+      .footer-col h4 { font-size: 0.6rem; margin-bottom: 0.75rem; }
+      .footer-col li { font-size: 0.75rem; margin-bottom: 0.4rem; }
       .footer-col li a { word-break: break-all; overflow-wrap: break-word; }
       .footer-tagline { white-space: normal; font-size: 0.75rem; }
       .footer-bottom { font-size: 0.65rem; }
