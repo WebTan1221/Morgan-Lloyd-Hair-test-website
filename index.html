@@ -1173,7 +1173,34 @@
       .photo-print:nth-child(5) { grid-column: 3/4; grid-row: 2/3; align-self: start; display: block; }
       .photo-print img { height: 180px !important; }
       .photo-print:nth-child(2) img { min-height: 360px !important; height: 0 !important; }
-      .footer-inner { grid-template-columns: 2fr 1fr 1fr 1fr; }
+      /* Footer: compact — logo full-width, 2-col Services + Contact, no Visit Us */
+      footer { padding: 1.5rem 2rem 1rem; }
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem 1.5rem;
+        padding-bottom: 1rem;
+      }
+      .footer-inner > div:first-child { grid-column: 1 / -1; }
+      .footer-inner > div:nth-child(3) { display: none; }
+      .footer-col h4 { font-size: 0.6rem; margin-bottom: 0.6rem; }
+      .footer-col li { font-size: 0.75rem; margin-bottom: 0.35rem; }
+      .footer-col li a { word-break: break-all; overflow-wrap: break-word; }
+      .footer-tagline { white-space: normal; font-size: 0.75rem; }
+      .footer-bottom { font-size: 0.65rem; }
+      /* Hero: side-info pinned to bottom corners */
+      .hero-side-info {
+        position: absolute;
+        top: auto;
+        bottom: 2.5rem;
+        left: 3rem;
+        right: 3rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 0;
+      }
+      .hero-instagram { order: 1; }
+      .hero-hours { order: 2; text-align: right; }
       /* Fix testimonials: force 3-col so 3 cards fill the row evenly */
       .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
       .testimonial-card { padding: 2.5rem 1.75rem; }
