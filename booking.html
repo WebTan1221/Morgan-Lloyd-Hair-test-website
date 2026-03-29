@@ -65,22 +65,22 @@
     .nav-book-btn:hover { background: var(--gold-light); }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
     .nav-hamburger span { display: block; width: 24px; height: 1px; background: #fff; }
-    .nav-mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(10,12,30,0); z-index: 99; justify-content: flex-end; transition: background 0.5s ease; }
-    .nav-mobile-overlay.open { background: rgba(10,12,30,0.5); }
-    .nav-mobile-panel { position: relative; width: min(88vw, 420px); height: 100%; background: #fff; display: flex; flex-direction: column; transform: translateX(calc(100% + 100px)); transition: transform 0.75s cubic-bezier(0.76,0,0.24,1); overflow: visible; }
+    .nav-mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(10,12,30,0); z-index: 99; justify-content: flex-end; transition: background 0.5s ease; pointer-events: none; }
+    .nav-mobile-overlay.open { background: rgba(10,12,30,0.5); pointer-events: auto; }
+    .nav-mobile-panel { position: relative; width: min(72vw, 340px); height: 100%; background: #fff; display: flex; flex-direction: column; transform: translateX(calc(100% + 100px)); transition: transform 0.75s cubic-bezier(0.76,0,0.24,1); overflow: visible; }
     .nav-mobile-overlay.open .nav-mobile-panel { transform: translateX(0); }
     .nav-mobile-curve { position: absolute; top: 0; left: -99px; width: 100px; height: 100%; pointer-events: none; }
-    .nav-mobile-inner { padding: 4.5rem 2.5rem 3rem; display: flex; flex-direction: column; height: 100%; overflow-y: auto; }
-    .nav-mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: rgba(26,26,46,0.4); font-size: 1.1rem; line-height: 1; cursor: pointer; padding: 0.4rem; z-index: 1; transition: color 0.2s ease; }
+    .nav-mobile-inner { padding: 3.5rem 1.75rem 2rem; display: flex; flex-direction: column; height: 100%; overflow-y: auto; }
+    .nav-mobile-close { position: absolute; top: 1.25rem; right: 1.25rem; background: none; border: none; color: rgba(26,26,46,0.5); font-size: 1rem; line-height: 1; cursor: pointer; padding: 0.4rem; z-index: 1; transition: color 0.2s ease; }
     .nav-mobile-close:hover { color: var(--text-dark); }
-    .nav-mobile-header { font-family: 'Jost', sans-serif; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(26,26,46,0.35); padding-bottom: 1.25rem; border-bottom: 1px solid rgba(26,26,46,0.1); margin-bottom: 0.5rem; }
-    .nav-mobile-links { list-style: none; padding: 0; margin: 0; flex: 1; }
-    .nav-mobile-item { border-bottom: 1px solid rgba(26,26,46,0.08); }
-    .nav-mobile-link { display: flex; align-items: baseline; gap: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2.3rem; letter-spacing: -0.01em; color: var(--text-dark); text-decoration: none; padding: 0.85rem 0; transition: color 0.25s ease; }
+    .nav-mobile-header { font-family: 'Jost', sans-serif; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(26,26,46,0.6); padding-bottom: 1rem; border-bottom: 1px solid rgba(26,26,46,0.12); margin-bottom: 0.25rem; }
+    .nav-mobile-links { list-style: none; padding: 0; margin: 0; }
+    .nav-mobile-item { border-bottom: 1px solid rgba(26,26,46,0.1); }
+    .nav-mobile-link { display: flex; align-items: baseline; gap: 0.75rem; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.85rem; letter-spacing: -0.01em; color: var(--text-dark); text-decoration: none; padding: 0.65rem 0; transition: color 0.25s ease; }
     .nav-mobile-link:hover { color: var(--navy); }
-    .nav-mobile-num { font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 300; color: rgba(26,26,46,0.3); letter-spacing: 0.08em; min-width: 1.8rem; }
-    .nav-mobile-footer { padding-top: 2rem; border-top: 1px solid rgba(26,26,46,0.08); margin-top: 1rem; }
-    .nav-mobile-book { display: inline-block; font-family: 'Jost', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); background: var(--gold); padding: 0.9rem 2rem; text-decoration: none; font-weight: 400; transition: background 0.3s ease; }
+    .nav-mobile-num { font-family: 'Jost', sans-serif; font-size: 0.68rem; font-weight: 300; color: rgba(26,26,46,0.55); letter-spacing: 0.08em; min-width: 1.6rem; }
+    .nav-mobile-book-item { border-bottom: none !important; padding-top: 0.5rem; }
+    .nav-mobile-book { display: inline-block; font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); background: var(--gold); padding: 0.8rem 1.5rem; text-decoration: none; font-weight: 400; margin-top: 0.75rem; transition: background 0.3s ease; }
     .nav-mobile-book:hover { background: var(--gold-light); }
 
     /* ── PAGE HEADER ── */
@@ -658,10 +658,8 @@
           <li class="nav-mobile-item"><a href="index.html#gallery" class="nav-mobile-link"><span class="nav-mobile-num">03.</span>Gallery</a></li>
           <li class="nav-mobile-item"><a href="index.html#testimonials" class="nav-mobile-link"><span class="nav-mobile-num">04.</span>Reviews</a></li>
           <li class="nav-mobile-item"><a href="team.html" class="nav-mobile-link"><span class="nav-mobile-num">05.</span>Meet the Team</a></li>
+          <li class="nav-mobile-item nav-mobile-book-item"><a href="booking.html" class="nav-mobile-book">Book an Appointment</a></li>
         </ul>
-        <div class="nav-mobile-footer">
-          <a href="booking.html" class="nav-mobile-book">Book an Appointment</a>
-        </div>
       </div>
     </div>
   </div>
