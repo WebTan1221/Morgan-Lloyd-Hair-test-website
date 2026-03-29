@@ -74,6 +74,15 @@
       display: flex;
       gap: 2.5rem;
       list-style: none;
+      align-items: center;
+    }
+    .nav-sep {
+      color: var(--gold);
+      font-size: 1.6rem;
+      line-height: 1;
+      pointer-events: none;
+      margin: 0 -0.25rem;
+      opacity: 0.85;
     }
     .nav-links a {
       font-family: 'Jost', sans-serif;
@@ -1057,71 +1066,113 @@
     .nav-mobile-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(26,31,62,0.98);
+      background: rgba(10,12,30,0);
       z-index: 150;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3rem;
+      justify-content: flex-end;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.5s ease, background 0.5s ease;
     }
     .nav-mobile-overlay.open {
       opacity: 1;
       pointer-events: all;
+      background: rgba(10,12,30,0.5);
     }
-    .nav-mobile-links {
-      list-style: none;
-      text-align: center;
+    .nav-mobile-panel {
+      position: relative;
+      width: min(88vw, 420px);
+      height: 100%;
+      background: #fff;
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
+      transform: translateX(calc(100% + 100px));
+      transition: transform 0.75s cubic-bezier(0.76,0,0.24,1);
+      overflow: visible;
     }
+    .nav-mobile-overlay.open .nav-mobile-panel { transform: translateX(0); }
+    .nav-mobile-curve {
+      position: absolute;
+      top: 0;
+      left: -99px;
+      width: 100px;
+      height: 100%;
+      pointer-events: none;
+    }
+    .nav-mobile-inner {
+      padding: 4.5rem 2.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+    }
+    .nav-mobile-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      background: none;
+      border: none;
+      color: rgba(26,26,46,0.4);
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.4rem;
+      z-index: 1;
+      transition: color 0.2s ease;
+    }
+    .nav-mobile-close:hover { color: var(--text-dark); }
+    .nav-mobile-header {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(26,26,46,0.35);
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(26,26,46,0.1);
+      margin-bottom: 0.5rem;
+    }
+    .nav-mobile-links { list-style: none; padding: 0; margin: 0; flex: 1; }
+    .nav-mobile-item { border-bottom: 1px solid rgba(26,26,46,0.08); }
     .nav-mobile-link {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.4rem, 8vw, 3.5rem);
       font-weight: 300;
-      letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.8);
+      font-size: 2.3rem;
+      letter-spacing: -0.01em;
+      color: var(--text-dark);
       text-decoration: none;
-      display: block;
-      padding: 0.3rem 0;
+      padding: 0.85rem 0;
       transition: color 0.25s ease;
     }
-    .nav-mobile-link:hover { color: var(--gold); }
-    .nav-mobile-book {
+    .nav-mobile-link:hover { color: var(--navy); }
+    .nav-mobile-num {
       font-family: 'Jost', sans-serif;
       font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.22em;
+      font-weight: 300;
+      color: rgba(26,26,46,0.3);
+      letter-spacing: 0.08em;
+      min-width: 1.8rem;
+    }
+    .nav-mobile-footer {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(26,26,46,0.08);
+      margin-top: 1rem;
+    }
+    .nav-mobile-book {
+      display: inline-block;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--navy);
       background: var(--gold);
-      padding: 1rem 2.4rem;
+      padding: 0.9rem 2rem;
       text-decoration: none;
+      font-weight: 400;
       transition: background 0.3s ease;
     }
     .nav-mobile-book:hover { background: var(--gold-light); }
-    .nav-mobile-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      background: none;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.7);
-      font-size: 1rem;
-      width: 2.2rem;
-      height: 2.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: color 0.25s ease, border-color 0.25s ease;
-      letter-spacing: 0;
-    }
-    .nav-mobile-close:hover { color: var(--gold); border-color: var(--gold); }
 
     /* ── RESPONSIVE: tablet / small (≤900px) ── */
     @media (max-width: 900px) {
@@ -1374,12 +1425,14 @@
   <nav id="main-nav">
     <a href="#" class="nav-logo">Morgan <span>Lloyd</span> Hair</a>
     <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
+      <li><a href="services.html">Services</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#testimonials">Reviews</a></li>
+      <li class="nav-sep">·</li>
+      <li><a href="team.html">Meet the Team</a></li>
     </ul>
-    <a href="#book" class="nav-book-btn">Book Now</a>
+    <a href="booking.html" class="nav-book-btn">Book Now</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -1387,14 +1440,25 @@
 
   <!-- Mobile nav overlay -->
   <div class="nav-mobile-overlay" id="nav-mobile-overlay">
-    <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close menu">&#x2715;</button>
-    <ul class="nav-mobile-links">
-      <li><a href="#services" class="nav-mobile-link">Services</a></li>
-      <li><a href="#about" class="nav-mobile-link">About</a></li>
-      <li><a href="#gallery" class="nav-mobile-link">Gallery</a></li>
-      <li><a href="#testimonials" class="nav-mobile-link">Reviews</a></li>
-    </ul>
-    <a href="#book" class="nav-mobile-book">Book an Appointment</a>
+    <div class="nav-mobile-panel" id="nav-mobile-panel">
+      <svg class="nav-mobile-curve" viewBox="0 0 100 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100,0 L100,1000 C35,750 35,250 100,0 Z" fill="#ffffff"/>
+      </svg>
+      <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close menu">&#x2715;</button>
+      <div class="nav-mobile-inner">
+        <div class="nav-mobile-header">Navigation</div>
+        <ul class="nav-mobile-links">
+          <li class="nav-mobile-item"><a href="services.html" class="nav-mobile-link"><span class="nav-mobile-num">01.</span>Services</a></li>
+          <li class="nav-mobile-item"><a href="#about" class="nav-mobile-link"><span class="nav-mobile-num">02.</span>About</a></li>
+          <li class="nav-mobile-item"><a href="#gallery" class="nav-mobile-link"><span class="nav-mobile-num">03.</span>Gallery</a></li>
+          <li class="nav-mobile-item"><a href="#testimonials" class="nav-mobile-link"><span class="nav-mobile-num">04.</span>Reviews</a></li>
+          <li class="nav-mobile-item"><a href="team.html" class="nav-mobile-link"><span class="nav-mobile-num">05.</span>Meet the Team</a></li>
+        </ul>
+        <div class="nav-mobile-footer">
+          <a href="booking.html" class="nav-mobile-book">Book an Appointment</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ── HERO ── -->
@@ -1433,10 +1497,10 @@
         <span></span>
       </div>
       <div class="hero-cta-group">
-        <a href="#book" class="btn-primary">Book an Appointment</a>
-        <a href="#services" class="btn-ghost">Explore Services</a>
+        <a href="booking.html" class="btn-primary">Book an Appointment</a>
+        <a href="services.html" class="btn-ghost">Explore Services</a>
       </div>
-      <p class="hero-description">Expert cuts, colour &amp; treatments in Swansea city centre.<br>Boutique salon experience, tailored entirely to you.</p>
+      <p class="hero-description">Expert cuts, colour &amp; treatments in Sketty, Swansea.<br>Boutique salon experience, tailored entirely to you.</p>
     </div>
     <div class="hero-scroll">
       <div class="hero-scroll-line"></div>
@@ -1452,50 +1516,50 @@
 
     <div class="svc-mosaic reveal">
 
-      <div class="svc-mosaic-item svc-item-1">
+      <a href="services.html" class="svc-mosaic-item svc-item-1">
         <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=540&fit=crop&auto=format" alt="Cut & Style" />
         <div class="svc-mosaic-label">
           <div class="svc-mosaic-name">Cut &amp; Style</div>
           <div class="svc-mosaic-price">From £55</div>
         </div>
-      </div>
+      </a>
 
-      <div class="svc-mosaic-item svc-item-2">
+      <a href="services.html" class="svc-mosaic-item svc-item-2">
         <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=320&fit=crop&auto=format" alt="Colour & Highlights" />
         <div class="svc-mosaic-label">
           <div class="svc-mosaic-name">Colour &amp; Highlights</div>
           <div class="svc-mosaic-price">From £95</div>
         </div>
-      </div>
+      </a>
 
-      <div class="svc-mosaic-item svc-item-3">
+      <a href="services.html" class="svc-mosaic-item svc-item-3">
         <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&h=220&fit=crop&auto=format" alt="Blowdry & Finish" />
         <div class="svc-mosaic-label">
           <div class="svc-mosaic-name">Blowdry</div>
           <div class="svc-mosaic-price">From £40</div>
         </div>
-      </div>
+      </a>
 
-      <div class="svc-mosaic-item svc-item-4">
+      <a href="services.html" class="svc-mosaic-item svc-item-4">
         <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=300&h=220&fit=crop&auto=format" alt="Balayage" />
         <div class="svc-mosaic-label">
           <div class="svc-mosaic-name">Balayage</div>
           <div class="svc-mosaic-price">From £120</div>
         </div>
-      </div>
+      </a>
 
-      <div class="svc-mosaic-item svc-item-5">
+      <a href="services.html" class="svc-mosaic-item svc-item-5">
         <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=280&h=220&fit=crop&auto=format" alt="Treatments" />
         <div class="svc-mosaic-label">
           <div class="svc-mosaic-name">Treatments</div>
           <div class="svc-mosaic-price">From £35</div>
         </div>
-      </div>
+      </a>
 
     </div>
 
     <div class="svc-book-wrap reveal">
-      <a href="#book" class="svc-book-pill">Book Now</a>
+      <a href="booking.html" class="svc-book-pill">Book Now</a>
     </div>
   </section>
 
@@ -1505,7 +1569,7 @@
       <div class="about-story-label reveal">Our Story</div>
       <h2 class="section-title reveal">More than a salon.<br />A place to <em style="font-family:'Cormorant Garamond',serif;font-style:italic;">belong.</em></h2>
       <p class="about-body reveal">
-        Founded in the heart of Swansea, <strong>Morgan Lloyd Hair</strong> was built on a simple belief: that exceptional hair is a partnership. We listen first, then create.
+        Founded in Sketty, Swansea, <strong>Morgan Lloyd Hair</strong> was built on a simple belief: that exceptional hair is a partnership. We listen first, then create.
         <br /><br />
         Our team of award-winning stylists bring decades of collective experience and an unwavering passion for their craft — staying at the forefront of technique, trend, and technology so you never have to settle.
       </p>
@@ -1601,7 +1665,7 @@
       </p>
       <h2 class="section-title reveal" style="color:#fff;">Book your appointment today</h2>
       <p class="book-cta-desc reveal">Whether it's your first visit or your fiftieth, we can't wait to welcome you. Reserve your chair with one of our expert stylists.</p>
-      <a href="mailto:hello@morganloydhair.com" class="btn-primary reveal" style="display:inline-block;">Book an Appointment</a>
+      <a href="booking.html" class="btn-primary reveal" style="display:inline-block;">Book an Appointment</a>
     </div>
   </section>
 
@@ -1617,7 +1681,7 @@
             <span></span>
           </div>
         </div>
-        <p class="footer-tagline">Premium hair care in the heart of Swansea. Where craft meets creativity.</p>
+        <p class="footer-tagline">Premium hair care in Sketty, Swansea. Where craft meets creativity.</p>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
@@ -1632,8 +1696,8 @@
       <div class="footer-col">
         <h4>Visit Us</h4>
         <ul>
-          <li>Wind Street, Swansea</li>
-          <li>SA1 1DP</li>
+          <li>6 Dillwyn Rd, Sketty</li>
+          <li>Swansea SA2 9AE</li>
         </ul>
         <div class="footer-divider"></div>
         <ul class="footer-hours-list">
@@ -1649,7 +1713,7 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="tel:+442071234567">+44 207 123 4567</a></li>
+          <li><a href="tel:+441792202143">01792 202143</a></li>
           <li><a href="mailto:hello@morganloydhair.com">hello@morganloydhair.com</a></li>
           <li style="margin-top:0.75rem;"><a href="#">Instagram</a></li>
           <li><a href="#">Facebook</a></li>
@@ -1683,6 +1747,7 @@
       document.body.style.overflow = '';
     };
     document.getElementById('nav-mobile-close').addEventListener('click', closeOverlay);
+    mobileOverlay.addEventListener('click', e => { if (e.target === mobileOverlay) closeOverlay(); });
     mobileOverlay.querySelectorAll('a').forEach(link => link.addEventListener('click', closeOverlay));
 
     // Scroll reveal
