@@ -163,7 +163,7 @@
     .carousel-track::-webkit-scrollbar { display: none; }
     .review-card {
       flex: 0 0 340px;
-      scroll-snap-align: start;
+      scroll-snap-align: center;
       background: var(--navy);
       padding: 2rem 1.75rem 1.75rem;
       display: flex;
@@ -658,68 +658,133 @@
     mobileOverlay.addEventListener('click', e => { if (e.target === mobileOverlay) closeOverlay(); });
     mobileOverlay.querySelectorAll('a').forEach(link => link.addEventListener('click', closeOverlay));
 
-    // Carousel
-    const track = document.getElementById('rev-track');
-    const dotsContainer = document.getElementById('rev-dots');
-    const cards = track.querySelectorAll('.review-card');
-    const total = cards.length;
+    // ── INFINITE CENTER CAROUSEL ──
+    (function() {
+      const track = document.getElementById('rev-track');
+      const dotsContainer = document.getElementById('rev-dots');
+      const prevBtn = document.getElementById('rev-prev');
+      const nextBtn = document.getElementById('rev-next');
 
-    // Build dots
-    cards.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
-      dot.addEventListener('click', () => scrollToCard(i));
-      dotsContainer.appendChild(dot);
-    });
-    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+      // Collect original cards before cloning
+      const origCards = Array.from(track.querySelectorAll('.review-card'));
+      const N = origCards.length;
 
-    function scrollToCard(index) {
-      const card = cards[index];
-      track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: 'smooth' });
-    }
-
-    function getCurrentIndex() {
-      const scrollLeft = track.scrollLeft;
-      let closest = 0;
-      let minDist = Infinity;
-      cards.forEach((card, i) => {
-        const dist = Math.abs(card.offsetLeft - track.offsetLeft - scrollLeft);
-        if (dist < minDist) { minDist = dist; closest = i; }
+      // Append end clones
+      origCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
       });
-      return closest;
-    }
+      // Prepend start clones (in same order so layout = [startClone0..N-1][real0..N-1][endClone0..N-1])
+      for (let i = N - 1; i >= 0; i--) {
+        const clone = origCards[i].cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.insertBefore(clone, track.firstChild);
+      }
 
-    function updateUI() {
-      const i = getCurrentIndex();
-      dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
-      document.getElementById('rev-prev').classList.toggle('disabled', i === 0);
-      document.getElementById('rev-next').classList.toggle('disabled', i === total - 1);
-    }
+      const allCards = Array.from(track.children);
 
-    document.getElementById('rev-prev').addEventListener('click', () => {
-      const i = getCurrentIndex();
-      if (i > 0) scrollToCard(i - 1);
-    });
-    document.getElementById('rev-next').addEventListener('click', () => {
-      const i = getCurrentIndex();
-      if (i < total - 1) scrollToCard(i + 1);
-    });
+      // Returns the scrollLeft value that would center allCards[absIdx] in the track viewport
+      function getScrollLeft(absIdx) {
+        const card = allCards[absIdx];
+        const trackRect = track.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        const offset = (cardRect.left + cardRect.width / 2) - (trackRect.left + trackRect.width / 2);
+        return track.scrollLeft + offset;
+      }
 
-    track.addEventListener('scroll', updateUI, { passive: true });
-    updateUI();
+      function getRealIndex(absIdx) {
+        return ((absIdx - N) % N + N) % N;
+      }
 
-    // Drag to scroll
-    let isDown = false, startX, scrollStart;
-    track.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - track.offsetLeft; scrollStart = track.scrollLeft; track.style.cursor = 'grabbing'; });
-    track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
-    track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
-    track.addEventListener('mousemove', e => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - track.offsetLeft;
-      track.scrollLeft = scrollStart - (x - startX);
-    });
+      function getAbsIndex() {
+        const trackRect = track.getBoundingClientRect();
+        const trackCenter = trackRect.left + trackRect.width / 2;
+        let closest = N, minDist = Infinity;
+        allCards.forEach((card, i) => {
+          const rect = card.getBoundingClientRect();
+          const dist = Math.abs((rect.left + rect.width / 2) - trackCenter);
+          if (dist < minDist) { minDist = dist; closest = i; }
+        });
+        return closest;
+      }
+
+      // Build N dots
+      for (let i = 0; i < N; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
+        const idx = i;
+        dot.addEventListener('click', () => {
+          track.scrollTo({ left: getScrollLeft(N + idx), behavior: 'smooth' });
+        });
+        dotsContainer.appendChild(dot);
+      }
+      const dots = Array.from(dotsContainer.querySelectorAll('.carousel-dot'));
+
+      function updateDots(realIdx) {
+        dots.forEach((d, i) => d.classList.toggle('active', i === realIdx));
+      }
+
+      // Click any card to center it
+      allCards.forEach((card, absIdx) => {
+        card.addEventListener('click', () => {
+          track.scrollTo({ left: getScrollLeft(absIdx), behavior: 'smooth' });
+        });
+      });
+
+      // Arrow buttons
+      prevBtn.addEventListener('click', () => {
+        const abs = getAbsIndex();
+        track.scrollTo({ left: getScrollLeft(abs - 1), behavior: 'smooth' });
+      });
+      nextBtn.addEventListener('click', () => {
+        const abs = getAbsIndex();
+        track.scrollTo({ left: getScrollLeft(abs + 1), behavior: 'smooth' });
+      });
+      // Remove disabled state — infinite loop never disables arrows
+      prevBtn.classList.remove('disabled');
+      nextBtn.classList.remove('disabled');
+
+      // Scroll: update dots + loop teleport
+      let settleTimer;
+      track.addEventListener('scroll', () => {
+        clearTimeout(settleTimer);
+        const abs = getAbsIndex();
+        updateDots(getRealIndex(abs));
+        settleTimer = setTimeout(() => {
+          if (abs < N) {
+            track.scrollLeft = getScrollLeft(abs + N);
+          } else if (abs >= 2 * N) {
+            track.scrollLeft = getScrollLeft(abs - N);
+          }
+        }, 150);
+      }, { passive: true });
+
+      // Cancel loop teleport during drag
+      track.addEventListener('mousedown', () => clearTimeout(settleTimer));
+      track.addEventListener('touchstart', () => clearTimeout(settleTimer), { passive: true });
+
+      // Drag to scroll
+      let isDown = false, startX, scrollStart;
+      track.addEventListener('mousedown', e => {
+        isDown = true; startX = e.pageX - track.offsetLeft; scrollStart = track.scrollLeft;
+        track.style.cursor = 'grabbing';
+      });
+      track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
+      track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
+      track.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        track.scrollLeft = scrollStart - (e.pageX - track.offsetLeft - startX);
+      });
+
+      // Initialize: center the first real card
+      requestAnimationFrame(() => {
+        track.scrollLeft = getScrollLeft(N);
+        updateDots(0);
+      });
+    })();
   </script>
 </body>
 </html>

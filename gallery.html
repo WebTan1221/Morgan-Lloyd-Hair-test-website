@@ -104,40 +104,20 @@
 
     .gallery-card {
       flex: 0 0 380px;
-      scroll-snap-align: start;
+      scroll-snap-align: center;
       background: var(--navy);
       overflow: hidden;
       position: relative;
     }
     .gallery-card-img {
       width: 100%;
-      height: 420px;
+      height: 380px;
       object-fit: cover;
-      object-position: center top;
+      object-position: center;
       display: block;
       transition: transform 0.5s cubic-bezier(0.25,1,0.5,1);
     }
     .gallery-card:hover .gallery-card-img { transform: scale(1.04); }
-    .gallery-card-caption {
-      padding: 1.25rem 1.5rem 1.5rem;
-      background: var(--navy);
-      border-top: 2px solid var(--gold);
-    }
-    .gallery-card-label {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.5rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.3rem;
-    }
-    .gallery-card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 300;
-      color: #fff;
-      line-height: 1.2;
-    }
 
     /* ── ARROWS ── */
     .carousel-arrow { position:absolute; top:calc(50% - 30px); transform:translateY(-50%); width:40px; height:40px; background:var(--navy); border:1px solid rgba(201,169,110,0.3); color:var(--gold); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.25s ease, border-color 0.25s ease; z-index:2; }
@@ -194,7 +174,7 @@
       .page-hero { padding:6rem 1.5rem 3rem; }
       .carousel-wrapper { padding:0 3rem; }
       .gallery-card { flex:0 0 300px; }
-      .gallery-card-img { height:340px; }
+      .gallery-card-img { height:300px; }
       footer { padding:3rem 1.5rem 1.5rem; }
       .footer-inner { grid-template-columns:1fr 1fr; gap:2rem; }
       .footer-inner > div:first-child { grid-column:1 / -1; }
@@ -205,7 +185,7 @@
       .page-hero { padding:6rem 1.25rem 2.75rem; }
       .carousel-wrapper { padding:0 2.5rem; }
       .gallery-card { flex:0 0 calc(100vw - 5rem); }
-      .gallery-card-img { height:280px; }
+      .gallery-card-img { height:calc(100vw - 5rem); }
       .carousel-arrow { width:34px; height:34px; font-size:0.85rem; }
       footer { padding:2rem 1.25rem 1rem; }
       .footer-inner { grid-template-columns:1fr 1fr; gap:1.25rem; padding-bottom:1.25rem; }
@@ -278,6 +258,7 @@
       <p class="page-hero-label"><span></span>Our Work<span></span></p>
       <h1>A look inside the <em>salon</em></h1>
       <p class="page-hero-sub">Swipe through our latest work</p>
+      <p class="page-hero-sub" style="margin-top:0.5rem;">Follow our Instagram <a href="#" style="color:var(--gold);text-decoration:none;font-weight:400;">@morganlloydhair</a></p>
     </div>
   </div>
 
@@ -288,67 +269,35 @@
       <div class="carousel-track" id="gal-track">
 
         <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=760&h=840&fit=crop&crop=top&auto=format" alt="Colour result" />
-          <div class="gallery-card-caption">
-            <div class="gallery-card-label">Colour</div>
-            <div class="gallery-card-title">Rich, natural colour</div>
-          </div>
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=760&h=760&fit=crop&crop=top&auto=format" alt="Colour result" />
         </div>
 
         <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=760&h=840&fit=crop&crop=top&auto=format" alt="Cut and finish" />
-          <div class="gallery-card-caption">
-            <div class="gallery-card-label">Cut &amp; Style</div>
-            <div class="gallery-card-title">Precision cut &amp; finish</div>
-          </div>
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=760&h=760&fit=crop&crop=top&auto=format" alt="Cut and finish" />
         </div>
 
         <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=760&h=840&fit=crop&crop=center&auto=format" alt="Curly styling" />
-          <div class="gallery-card-caption">
-            <div class="gallery-card-label">Styling</div>
-            <div class="gallery-card-title">Defined curls &amp; texture</div>
-          </div>
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=760&h=760&fit=crop&crop=center&auto=format" alt="Curly styling" />
         </div>
 
         <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=760&h=840&fit=crop&crop=top&auto=format" alt="Blowdry" />
-          <div class="gallery-card-caption">
-            <div class="gallery-card-label">Blowdry &amp; Finish</div>
-            <div class="gallery-card-title">Silky blowdry finish</div>
-          </div>
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=760&h=760&fit=crop&crop=top&auto=format" alt="Blowdry" />
         </div>
 
         <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=760&h=840&fit=crop&crop=top&auto=format" alt="Treatment" />
-          <div class="gallery-card-caption">
-            <div class="gallery-card-label">Treatment</div>
-            <div class="gallery-card-title">Restorative treatment</div>
-          </div>
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=760&h=760&fit=crop&crop=top&auto=format" alt="Treatment" />
         </div>
 
         <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=760&h=840&fit=crop&crop=top&auto=format" alt="Blowdry finish" />
-          <div class="gallery-card-caption">
-            <div class="gallery-card-label">Blowdry &amp; Finish</div>
-            <div class="gallery-card-title">Smooth, glossy blowout</div>
-          </div>
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=760&h=760&fit=crop&crop=top&auto=format" alt="Blowdry finish" />
         </div>
 
         <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=760&h=840&fit=crop&crop=top&auto=format" alt="Balayage" />
-          <div class="gallery-card-caption">
-            <div class="gallery-card-label">Balayage</div>
-            <div class="gallery-card-title">Sun-kissed balayage</div>
-          </div>
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=760&h=760&fit=crop&crop=top&auto=format" alt="Balayage" />
         </div>
 
         <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=760&h=840&fit=crop&crop=top&auto=format" alt="Colour treatment" />
-          <div class="gallery-card-caption">
-            <div class="gallery-card-label">Colour</div>
-            <div class="gallery-card-title">Vibrant colour refresh</div>
-          </div>
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=760&h=760&fit=crop&crop=top&auto=format" alt="Colour treatment" />
         </div>
 
       </div>
@@ -442,63 +391,129 @@
     mobileOverlay.addEventListener('click', e => { if (e.target === mobileOverlay) closeOverlay(); });
     mobileOverlay.querySelectorAll('a').forEach(link => link.addEventListener('click', closeOverlay));
 
-    // Carousel
-    const track = document.getElementById('gal-track');
-    const dotsContainer = document.getElementById('gal-dots');
-    const cards = track.querySelectorAll('.gallery-card');
-    const total = cards.length;
+    // ── INFINITE CENTER CAROUSEL ──
+    (function() {
+      const track = document.getElementById('gal-track');
+      const dotsContainer = document.getElementById('gal-dots');
+      const prevBtn = document.getElementById('gal-prev');
+      const nextBtn = document.getElementById('gal-next');
 
-    cards.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Go to image ' + (i + 1));
-      dot.addEventListener('click', () => scrollToCard(i));
-      dotsContainer.appendChild(dot);
-    });
-    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+      const origCards = Array.from(track.querySelectorAll('.gallery-card'));
+      const N = origCards.length;
 
-    function scrollToCard(index) {
-      const card = cards[index];
-      track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: 'smooth' });
-    }
-
-    function getCurrentIndex() {
-      const scrollLeft = track.scrollLeft;
-      let closest = 0, minDist = Infinity;
-      cards.forEach((card, i) => {
-        const dist = Math.abs(card.offsetLeft - track.offsetLeft - scrollLeft);
-        if (dist < minDist) { minDist = dist; closest = i; }
+      // Append end clones
+      origCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
       });
-      return closest;
-    }
+      // Prepend start clones
+      for (let i = N - 1; i >= 0; i--) {
+        const clone = origCards[i].cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.insertBefore(clone, track.firstChild);
+      }
 
-    function updateUI() {
-      const i = getCurrentIndex();
-      dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
-      document.getElementById('gal-prev').classList.toggle('disabled', i === 0);
-      document.getElementById('gal-next').classList.toggle('disabled', i === total - 1);
-    }
+      const allCards = Array.from(track.children);
 
-    document.getElementById('gal-prev').addEventListener('click', () => {
-      const i = getCurrentIndex(); if (i > 0) scrollToCard(i - 1);
-    });
-    document.getElementById('gal-next').addEventListener('click', () => {
-      const i = getCurrentIndex(); if (i < total - 1) scrollToCard(i + 1);
-    });
+      function getScrollLeft(absIdx) {
+        const card = allCards[absIdx];
+        const trackRect = track.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        const offset = (cardRect.left + cardRect.width / 2) - (trackRect.left + trackRect.width / 2);
+        return track.scrollLeft + offset;
+      }
 
-    track.addEventListener('scroll', updateUI, { passive: true });
-    updateUI();
+      function getRealIndex(absIdx) {
+        return ((absIdx - N) % N + N) % N;
+      }
 
-    // Drag to scroll
-    let isDown = false, startX, scrollStart;
-    track.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - track.offsetLeft; scrollStart = track.scrollLeft; track.style.cursor = 'grabbing'; });
-    track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
-    track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
-    track.addEventListener('mousemove', e => {
-      if (!isDown) return;
-      e.preventDefault();
-      track.scrollLeft = scrollStart - (e.pageX - track.offsetLeft - startX);
-    });
+      function getAbsIndex() {
+        const trackRect = track.getBoundingClientRect();
+        const trackCenter = trackRect.left + trackRect.width / 2;
+        let closest = N, minDist = Infinity;
+        allCards.forEach((card, i) => {
+          const rect = card.getBoundingClientRect();
+          const dist = Math.abs((rect.left + rect.width / 2) - trackCenter);
+          if (dist < minDist) { minDist = dist; closest = i; }
+        });
+        return closest;
+      }
+
+      // Build N dots
+      for (let i = 0; i < N; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to image ' + (i + 1));
+        const idx = i;
+        dot.addEventListener('click', () => {
+          track.scrollTo({ left: getScrollLeft(N + idx), behavior: 'smooth' });
+        });
+        dotsContainer.appendChild(dot);
+      }
+      const dots = Array.from(dotsContainer.querySelectorAll('.carousel-dot'));
+
+      function updateDots(realIdx) {
+        dots.forEach((d, i) => d.classList.toggle('active', i === realIdx));
+      }
+
+      // Click any card to center it
+      allCards.forEach((card, absIdx) => {
+        card.addEventListener('click', () => {
+          track.scrollTo({ left: getScrollLeft(absIdx), behavior: 'smooth' });
+        });
+      });
+
+      // Arrow buttons
+      prevBtn.addEventListener('click', () => {
+        const abs = getAbsIndex();
+        track.scrollTo({ left: getScrollLeft(abs - 1), behavior: 'smooth' });
+      });
+      nextBtn.addEventListener('click', () => {
+        const abs = getAbsIndex();
+        track.scrollTo({ left: getScrollLeft(abs + 1), behavior: 'smooth' });
+      });
+      prevBtn.classList.remove('disabled');
+      nextBtn.classList.remove('disabled');
+
+      // Scroll: update dots + loop teleport
+      let settleTimer;
+      track.addEventListener('scroll', () => {
+        clearTimeout(settleTimer);
+        const abs = getAbsIndex();
+        updateDots(getRealIndex(abs));
+        settleTimer = setTimeout(() => {
+          if (abs < N) {
+            track.scrollLeft = getScrollLeft(abs + N);
+          } else if (abs >= 2 * N) {
+            track.scrollLeft = getScrollLeft(abs - N);
+          }
+        }, 150);
+      }, { passive: true });
+
+      track.addEventListener('mousedown', () => clearTimeout(settleTimer));
+      track.addEventListener('touchstart', () => clearTimeout(settleTimer), { passive: true });
+
+      // Drag to scroll
+      let isDown = false, startX, scrollStart;
+      track.addEventListener('mousedown', e => {
+        isDown = true; startX = e.pageX - track.offsetLeft; scrollStart = track.scrollLeft;
+        track.style.cursor = 'grabbing';
+      });
+      track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
+      track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
+      track.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        track.scrollLeft = scrollStart - (e.pageX - track.offsetLeft - startX);
+      });
+
+      // Initialize: center the first real card
+      requestAnimationFrame(() => {
+        track.scrollLeft = getScrollLeft(N);
+        updateDots(0);
+      });
+    })();
   </script>
 </body>
 </html>
