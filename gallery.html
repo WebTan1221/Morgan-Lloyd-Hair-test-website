@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Client Reviews — Morgan Lloyd Hair</title>
+  <title>Gallery — Morgan Lloyd Hair</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
@@ -19,37 +19,11 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
-    body {
-      background-color: var(--cream);
-      color: var(--text-dark);
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      line-height: 1.75;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    }
+    body { background-color: var(--cream); color: var(--text-dark); font-family: 'Jost', sans-serif; font-weight: 300; line-height: 1.75; overflow-x: hidden; }
+    body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.025; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); }
 
     /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.5rem 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(26,31,62,0.97);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 1px 0 rgba(201,169,110,0.15);
-    }
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1.5rem 3rem; display:flex; align-items:center; justify-content:space-between; background:rgba(26,31,62,0.97); backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(201,169,110,0.15); }
     .nav-logo { font-family:'Jost',sans-serif; font-weight:200; font-size:0.8rem; letter-spacing:0.35em; color:#fff; text-decoration:none; text-transform:uppercase; }
     .nav-logo span { color:var(--gold); font-weight:400; }
     .nav-links { display:flex; gap:2.5rem; list-style:none; align-items:center; }
@@ -98,50 +72,16 @@
       pointer-events: none;
     }
     .page-hero-inner { position: relative; z-index: 1; }
-    .page-hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
+    .page-hero-label { display:inline-flex; align-items:center; gap:0.75rem; font-family:'Jost',sans-serif; font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
     .page-hero-label span { display:block; width:24px; height:1px; background:var(--gold); opacity:0.6; }
-    .page-hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      color: #fff;
-      letter-spacing: -0.01em;
-      line-height: 1.1;
-      margin-bottom: 0.75rem;
-    }
-    .page-hero h1 em { font-style: italic; color: var(--gold-light); }
-    .page-hero-sub {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.4);
-      letter-spacing: 0.08em;
-    }
-    .hero-rating {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-top: 1.25rem;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(201,169,110,0.2);
-      padding: 0.5rem 1.25rem;
-    }
-    .hero-rating-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; }
-    .hero-rating-text { font-family: 'Jost', sans-serif; font-size: 0.62rem; color: rgba(255,255,255,0.5); letter-spacing: 0.15em; text-transform: uppercase; }
+    .page-hero h1 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(2.2rem,4vw,3.5rem); color:#fff; letter-spacing:-0.01em; line-height:1.1; margin-bottom:0.75rem; }
+    .page-hero h1 em { font-style:italic; color:var(--gold-light); }
+    .page-hero-sub { font-size:0.8rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em; }
 
-    /* ── CAROUSEL SECTION ── */
+    /* ── GALLERY CAROUSEL ── */
     .carousel-section {
       padding: 3.5rem 0 4rem;
       background: var(--cream);
-      position: relative;
     }
     .carousel-wrapper {
       position: relative;
@@ -161,137 +101,63 @@
     }
     .carousel-track:active { cursor: grabbing; }
     .carousel-track::-webkit-scrollbar { display: none; }
-    .review-card {
-      flex: 0 0 340px;
+
+    .gallery-card {
+      flex: 0 0 380px;
       scroll-snap-align: start;
       background: var(--navy);
-      padding: 2rem 1.75rem 1.75rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-      border-bottom: 3px solid var(--gold);
-      transition: transform 0.25s ease;
+      overflow: hidden;
+      position: relative;
     }
-    .review-card:hover { transform: translateY(-3px); }
-    .review-card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .gallery-card-img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25,1,0.5,1);
     }
-    .review-stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.1em; }
-    .review-badge {
+    .gallery-card:hover .gallery-card-img { transform: scale(1.04); }
+    .gallery-card-caption {
+      padding: 1.25rem 1.5rem 1.5rem;
+      background: var(--navy);
+      border-top: 2px solid var(--gold);
+    }
+    .gallery-card-label {
       font-family: 'Jost', sans-serif;
       font-size: 0.5rem;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--navy);
-      background: var(--gold);
-      padding: 0.25rem 0.6rem;
-      white-space: nowrap;
-    }
-    .review-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      line-height: 0.7;
       color: var(--gold);
-      opacity: 0.4;
+      margin-bottom: 0.3rem;
     }
-    .review-text {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.82rem;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.72);
-      flex: 1;
-    }
-    .review-footer {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 0.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-    .review-author {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
+    .gallery-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
       color: #fff;
-      letter-spacing: 0.04em;
-    }
-    .review-location {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.6rem;
-      color: rgba(255,255,255,0.35);
-      letter-spacing: 0.08em;
-      margin-top: 0.15rem;
-    }
-    .review-date {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.58rem;
-      color: rgba(255,255,255,0.25);
-      letter-spacing: 0.08em;
-      text-align: right;
+      line-height: 1.2;
     }
 
-    /* ── CAROUSEL ARROWS ── */
-    .carousel-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      background: var(--navy);
-      border: 1px solid rgba(201,169,110,0.3);
-      color: var(--gold);
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.25s ease, border-color 0.25s ease;
-      z-index: 2;
-      flex-shrink: 0;
-    }
-    .carousel-arrow:hover { background: var(--navy-deep); border-color: var(--gold); }
-    .carousel-arrow.prev { left: 0; }
-    .carousel-arrow.next { right: 0; }
-    .carousel-arrow.disabled { opacity: 0.25; pointer-events: none; }
+    /* ── ARROWS ── */
+    .carousel-arrow { position:absolute; top:calc(50% - 30px); transform:translateY(-50%); width:40px; height:40px; background:var(--navy); border:1px solid rgba(201,169,110,0.3); color:var(--gold); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.25s ease, border-color 0.25s ease; z-index:2; }
+    .carousel-arrow:hover { background:var(--navy-deep); border-color:var(--gold); }
+    .carousel-arrow.prev { left:0; }
+    .carousel-arrow.next { right:0; }
+    .carousel-arrow.disabled { opacity:0.25; pointer-events:none; }
 
     /* ── DOTS ── */
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 1.75rem;
-    }
-    .carousel-dot {
-      width: 6px;
-      height: 6px;
-      background: rgba(26,31,62,0.2);
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background 0.25s ease, transform 0.25s ease;
-    }
-    .carousel-dot.active { background: var(--navy); transform: scale(1.3); }
+    .carousel-dots { display:flex; justify-content:center; gap:0.5rem; margin-top:1.75rem; }
+    .carousel-dot { width:6px; height:6px; background:rgba(26,31,62,0.2); border-radius:50%; cursor:pointer; transition:background 0.25s ease, transform 0.25s ease; }
+    .carousel-dot.active { background:var(--navy); transform:scale(1.3); }
 
     /* ── CTA ── */
-    .reviews-cta {
-      background: var(--navy);
-      padding: 3.5rem 3rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .reviews-cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(201,169,110,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .reviews-cta-inner { position: relative; z-index: 1; }
-    .reviews-cta h2 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(1.8rem,3.5vw,2.6rem); color:#fff; margin-bottom:0.75rem; }
-    .reviews-cta h2 em { font-style:italic; color:var(--gold-light); }
-    .reviews-cta p { font-size:0.82rem; color:rgba(255,255,255,0.45); max-width:400px; margin:0 auto 1.75rem; letter-spacing:0.04em; }
+    .gallery-cta { background:var(--navy); padding:3.5rem 3rem; text-align:center; position:relative; overflow:hidden; }
+    .gallery-cta::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 80% at 50% 50%, rgba(201,169,110,0.06) 0%, transparent 70%); pointer-events:none; }
+    .gallery-cta-inner { position:relative; z-index:1; }
+    .gallery-cta h2 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(1.8rem,3.5vw,2.6rem); color:#fff; margin-bottom:0.75rem; }
+    .gallery-cta h2 em { font-style:italic; color:var(--gold-light); }
+    .gallery-cta p { font-size:0.82rem; color:rgba(255,255,255,0.45); max-width:400px; margin:0 auto 1.75rem; letter-spacing:0.04em; }
     .btn-primary { font-family:'Jost',sans-serif; font-weight:400; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--navy); background:var(--gold); padding:0.9rem 2.25rem; text-decoration:none; transition:background 0.3s ease, transform 0.2s ease; display:inline-block; }
     .btn-primary:hover { background:var(--gold-light); transform:translateY(-2px); }
 
@@ -327,7 +193,8 @@
       .nav-mobile-overlay { display:flex; }
       .page-hero { padding:6rem 1.5rem 3rem; }
       .carousel-wrapper { padding:0 3rem; }
-      .review-card { flex:0 0 280px; }
+      .gallery-card { flex:0 0 300px; }
+      .gallery-card-img { height:340px; }
       footer { padding:3rem 1.5rem 1.5rem; }
       .footer-inner { grid-template-columns:1fr 1fr; gap:2rem; }
       .footer-inner > div:first-child { grid-column:1 / -1; }
@@ -337,7 +204,8 @@
     @media (max-width: 600px) {
       .page-hero { padding:6rem 1.25rem 2.75rem; }
       .carousel-wrapper { padding:0 2.5rem; }
-      .review-card { flex:0 0 calc(100vw - 5rem); padding:1.75rem 1.5rem 1.5rem; }
+      .gallery-card { flex:0 0 calc(100vw - 5rem); }
+      .gallery-card-img { height:280px; }
       .carousel-arrow { width:34px; height:34px; font-size:0.85rem; }
       footer { padding:2rem 1.25rem 1rem; }
       .footer-inner { grid-template-columns:1fr 1fr; gap:1.25rem; padding-bottom:1.25rem; }
@@ -373,8 +241,8 @@
     <ul class="nav-links">
       <li><a href="services.html">Services</a></li>
       <li><a href="index.html#about">About</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="reviews.html" class="active">Reviews</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
       <li class="nav-sep">·</li>
       <li><a href="team.html">Meet the Team</a></li>
     </ul>
@@ -407,182 +275,98 @@
   <!-- ── HERO ── -->
   <div class="page-hero">
     <div class="page-hero-inner">
-      <p class="page-hero-label"><span></span>Client Reviews<span></span></p>
-      <h1>Loved by our <em>clients</em></h1>
-      <p class="page-hero-sub">Real experiences from real people</p>
-      <div class="hero-rating">
-        <span class="hero-rating-stars">★★★★★</span>
-        <span class="hero-rating-text">5.0 · 200+ reviews</span>
-      </div>
+      <p class="page-hero-label"><span></span>Our Work<span></span></p>
+      <h1>A look inside the <em>salon</em></h1>
+      <p class="page-hero-sub">Swipe through our latest work</p>
     </div>
   </div>
 
-  <!-- ── CAROUSEL ── -->
+  <!-- ── GALLERY CAROUSEL ── -->
   <section class="carousel-section">
     <div class="carousel-wrapper">
-      <button class="carousel-arrow prev" id="rev-prev" aria-label="Previous">&#8592;</button>
-      <div class="carousel-track" id="rev-track">
+      <button class="carousel-arrow prev" id="gal-prev" aria-label="Previous">&#8592;</button>
+      <div class="carousel-track" id="gal-track">
 
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Balayage</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">Honestly the best hair experience I've ever had. My balayage came out absolutely stunning — exactly what I wanted. The colour is so natural and the finish is flawless. I'll never go anywhere else.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Sophie R.</div>
-              <div class="review-location">Swansea</div>
-            </div>
-            <div class="review-date">Jan 2026</div>
+        <div class="gallery-card">
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=760&h=840&fit=crop&crop=top&auto=format" alt="Colour result" />
+          <div class="gallery-card-caption">
+            <div class="gallery-card-label">Colour</div>
+            <div class="gallery-card-title">Rich, natural colour</div>
           </div>
         </div>
 
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Colour</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">The atmosphere is incredible and the team are so talented. I came in with a vague idea and left with the most beautiful colour I've ever had. Everyone keeps asking where I get my hair done.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">James T.</div>
-              <div class="review-location">Mumbles</div>
-            </div>
-            <div class="review-date">Dec 2025</div>
+        <div class="gallery-card">
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=760&h=840&fit=crop&crop=top&auto=format" alt="Cut and finish" />
+          <div class="gallery-card-caption">
+            <div class="gallery-card-label">Cut &amp; Style</div>
+            <div class="gallery-card-title">Precision cut &amp; finish</div>
           </div>
         </div>
 
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Cut &amp; Style</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">From the moment I walked in, I felt completely at ease. The consultation was thorough, the cut was perfect, and I left feeling like a new person. Truly exceptional service from start to finish.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Amara K.</div>
-              <div class="review-location">Sketty</div>
-            </div>
-            <div class="review-date">Nov 2025</div>
+        <div class="gallery-card">
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=760&h=840&fit=crop&crop=center&auto=format" alt="Curly styling" />
+          <div class="gallery-card-caption">
+            <div class="gallery-card-label">Styling</div>
+            <div class="gallery-card-title">Defined curls &amp; texture</div>
           </div>
         </div>
 
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Bridal Hair</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">I had my bridal hair done here and it was everything I dreamed of. The team went above and beyond — multiple trials, kept calm on the day, and the result was absolutely breathtaking.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Erin W.</div>
-              <div class="review-location">Gower</div>
-            </div>
-            <div class="review-date">Oct 2025</div>
+        <div class="gallery-card">
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=760&h=840&fit=crop&crop=top&auto=format" alt="Blowdry" />
+          <div class="gallery-card-caption">
+            <div class="gallery-card-label">Blowdry &amp; Finish</div>
+            <div class="gallery-card-title">Silky blowdry finish</div>
           </div>
         </div>
 
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Blowdry</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">I pop in for a blowdry before every big occasion and the result is always incredible. The team are warm, professional and genuinely passionate. My absolute go-to place in Swansea.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Caitlin M.</div>
-              <div class="review-location">Uplands</div>
-            </div>
-            <div class="review-date">Feb 2026</div>
+        <div class="gallery-card">
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=760&h=840&fit=crop&crop=top&auto=format" alt="Treatment" />
+          <div class="gallery-card-caption">
+            <div class="gallery-card-label">Treatment</div>
+            <div class="gallery-card-title">Restorative treatment</div>
           </div>
         </div>
 
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Highlights</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">Had full head highlights for the first time and I was so nervous. The stylist took the time to explain everything and the result was gorgeous. Natural, bright and exactly the shade I wanted.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Rhys D.</div>
-              <div class="review-location">Sketty</div>
-            </div>
-            <div class="review-date">Mar 2026</div>
+        <div class="gallery-card">
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=760&h=840&fit=crop&crop=top&auto=format" alt="Blowdry finish" />
+          <div class="gallery-card-caption">
+            <div class="gallery-card-label">Blowdry &amp; Finish</div>
+            <div class="gallery-card-title">Smooth, glossy blowout</div>
           </div>
         </div>
 
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Treatment</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">My hair was so damaged from years of colouring. One treatment session here and the difference was remarkable — silky, strong and so healthy looking. I've been coming back every month since.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Naomi F.</div>
-              <div class="review-location">Bishopston</div>
-            </div>
-            <div class="review-date">Jan 2026</div>
+        <div class="gallery-card">
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=760&h=840&fit=crop&crop=top&auto=format" alt="Balayage" />
+          <div class="gallery-card-caption">
+            <div class="gallery-card-label">Balayage</div>
+            <div class="gallery-card-title">Sun-kissed balayage</div>
           </div>
         </div>
 
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Cut &amp; Style</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">I've tried many salons in Swansea and nothing compares to Morgan Lloyd Hair. The attention to detail is unmatched. I walked out with the most precise, beautiful cut I've ever had. Brilliant.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Lowri P.</div>
-              <div class="review-location">Llansamlet</div>
-            </div>
-            <div class="review-date">Mar 2026</div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Toner &amp; Gloss</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">Came in to refresh my blonde with a toner and the result was stunning. The colour is so vibrant. The salon itself is gorgeous too — very relaxed, premium atmosphere. Highly recommend.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Tom G.</div>
-              <div class="review-location">Mumbles</div>
-            </div>
-            <div class="review-date">Feb 2026</div>
+        <div class="gallery-card">
+          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=760&h=840&fit=crop&crop=top&auto=format" alt="Colour treatment" />
+          <div class="gallery-card-caption">
+            <div class="gallery-card-label">Colour</div>
+            <div class="gallery-card-title">Vibrant colour refresh</div>
           </div>
         </div>
 
       </div>
-      <button class="carousel-arrow next" id="rev-next" aria-label="Next">&#8594;</button>
+      <button class="carousel-arrow next" id="gal-next" aria-label="Next">&#8594;</button>
     </div>
-    <div class="carousel-dots" id="rev-dots"></div>
+    <div class="carousel-dots" id="gal-dots"></div>
   </section>
 
   <!-- ── CTA ── -->
-  <section class="reviews-cta">
-    <div class="reviews-cta-inner">
+  <section class="gallery-cta">
+    <div class="gallery-cta-inner">
       <p style="font-family:'Jost',sans-serif;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;justify-content:center;gap:0.75rem;">
         <span style="display:block;width:24px;height:1px;background:var(--gold);opacity:0.6;"></span>
-        Ready to experience it
+        Your turn
         <span style="display:block;width:24px;height:1px;background:var(--gold);opacity:0.6;"></span>
       </p>
-      <h2>Join our happy <em>clients</em></h2>
-      <p>Book your appointment today and discover the Morgan Lloyd Hair difference.</p>
+      <h2>Ready for your <em>transformation?</em></h2>
+      <p>Book with one of our expert stylists and let us create something beautiful together.</p>
       <a href="booking.html" class="btn-primary">Book an Appointment</a>
     </div>
   </section>
@@ -659,16 +443,15 @@
     mobileOverlay.querySelectorAll('a').forEach(link => link.addEventListener('click', closeOverlay));
 
     // Carousel
-    const track = document.getElementById('rev-track');
-    const dotsContainer = document.getElementById('rev-dots');
-    const cards = track.querySelectorAll('.review-card');
+    const track = document.getElementById('gal-track');
+    const dotsContainer = document.getElementById('gal-dots');
+    const cards = track.querySelectorAll('.gallery-card');
     const total = cards.length;
 
-    // Build dots
     cards.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
+      dot.setAttribute('aria-label', 'Go to image ' + (i + 1));
       dot.addEventListener('click', () => scrollToCard(i));
       dotsContainer.appendChild(dot);
     });
@@ -681,8 +464,7 @@
 
     function getCurrentIndex() {
       const scrollLeft = track.scrollLeft;
-      let closest = 0;
-      let minDist = Infinity;
+      let closest = 0, minDist = Infinity;
       cards.forEach((card, i) => {
         const dist = Math.abs(card.offsetLeft - track.offsetLeft - scrollLeft);
         if (dist < minDist) { minDist = dist; closest = i; }
@@ -693,17 +475,15 @@
     function updateUI() {
       const i = getCurrentIndex();
       dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
-      document.getElementById('rev-prev').classList.toggle('disabled', i === 0);
-      document.getElementById('rev-next').classList.toggle('disabled', i === total - 1);
+      document.getElementById('gal-prev').classList.toggle('disabled', i === 0);
+      document.getElementById('gal-next').classList.toggle('disabled', i === total - 1);
     }
 
-    document.getElementById('rev-prev').addEventListener('click', () => {
-      const i = getCurrentIndex();
-      if (i > 0) scrollToCard(i - 1);
+    document.getElementById('gal-prev').addEventListener('click', () => {
+      const i = getCurrentIndex(); if (i > 0) scrollToCard(i - 1);
     });
-    document.getElementById('rev-next').addEventListener('click', () => {
-      const i = getCurrentIndex();
-      if (i < total - 1) scrollToCard(i + 1);
+    document.getElementById('gal-next').addEventListener('click', () => {
+      const i = getCurrentIndex(); if (i < total - 1) scrollToCard(i + 1);
     });
 
     track.addEventListener('scroll', updateUI, { passive: true });
@@ -717,8 +497,7 @@
     track.addEventListener('mousemove', e => {
       if (!isDown) return;
       e.preventDefault();
-      const x = e.pageX - track.offsetLeft;
-      track.scrollLeft = scrollStart - (x - startX);
+      track.scrollLeft = scrollStart - (e.pageX - track.offsetLeft - startX);
     });
   </script>
 </body>
