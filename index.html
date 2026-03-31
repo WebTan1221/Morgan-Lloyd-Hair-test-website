@@ -1064,20 +1064,18 @@
 
     /* ── MOBILE OVERLAY MENU ── */
     .nav-mobile-overlay {
+      display: none;
       position: fixed;
       inset: 0;
       background: rgba(10,12,30,0);
-      z-index: 150;
-      display: flex;
+      z-index: 99;
       justify-content: flex-end;
-      opacity: 0;
       pointer-events: none;
-      transition: opacity 0.5s ease, background 0.5s ease;
+      transition: background 0.5s ease;
     }
     .nav-mobile-overlay.open {
-      opacity: 1;
-      pointer-events: all;
       background: rgba(10,12,30,0.5);
+      pointer-events: auto;
     }
     .nav-mobile-panel {
       position: relative;
@@ -1177,6 +1175,7 @@
       .nav-links { display: none; }
       .nav-book-btn { display: none; }
       .nav-hamburger { display: flex; }
+      .nav-mobile-overlay { display: flex; }
       .hero-side-info { display: none; }
       .swirl-section::before, .swirl-section::after { width: 260px; height: 260px; }
       /* Services mosaic → 2-col */
@@ -1431,7 +1430,7 @@
       <li><a href="services.html">Services</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
       <li class="nav-sep">·</li>
       <li><a href="team.html">Meet the Team</a></li>
     </ul>
@@ -1454,7 +1453,7 @@
           <li class="nav-mobile-item"><a href="services.html" class="nav-mobile-link"><span class="nav-mobile-num">01.</span>Services</a></li>
           <li class="nav-mobile-item"><a href="#about" class="nav-mobile-link"><span class="nav-mobile-num">02.</span>About</a></li>
           <li class="nav-mobile-item"><a href="#gallery" class="nav-mobile-link"><span class="nav-mobile-num">03.</span>Gallery</a></li>
-          <li class="nav-mobile-item"><a href="#testimonials" class="nav-mobile-link"><span class="nav-mobile-num">04.</span>Reviews</a></li>
+          <li class="nav-mobile-item"><a href="reviews.html" class="nav-mobile-link"><span class="nav-mobile-num">04.</span>Reviews</a></li>
           <li class="nav-mobile-item"><a href="team.html" class="nav-mobile-link"><span class="nav-mobile-num">05.</span>Meet the Team</a></li>
           <li class="nav-mobile-item nav-mobile-book-item"><a href="booking.html" class="nav-mobile-book">Book an Appointment</a></li>
         </ul>

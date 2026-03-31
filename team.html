@@ -391,6 +391,26 @@
     @media (min-width: 769px) and (max-width: 900px) {
       .team-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 2rem; }
       .team-card-featured { grid-column: span 2; }
+      /* Nav: restore desktop layout */
+      nav { padding: 1rem 1.5rem; }
+      .nav-logo { white-space: nowrap; font-size: 0.68rem; letter-spacing: 0.2em; }
+      .nav-links { display: flex; gap: 1rem; }
+      .nav-links a { font-size: 0.62rem; letter-spacing: 0.1em; text-align: center; }
+      .nav-book-btn { display: inline-block; text-align: center; white-space: nowrap; padding: 0.55rem 1rem; font-size: 0.62rem; letter-spacing: 0.12em; }
+      .nav-hamburger { display: none; }
+      /* Footer: match landing page foldable layout */
+      footer { padding: 3rem 2rem 2rem; }
+      .footer-inner { grid-template-columns: auto auto 1fr; gap: 2rem; padding-bottom: 2rem; }
+      .footer-inner > div:first-child { grid-column: 1 / -1; }
+      .footer-inner > div:nth-child(3) { display: block; }
+      .footer-inner > div:nth-child(4) { text-align: right; }
+      .footer-inner > div:nth-child(4) h4 { text-align: right; }
+      .footer-inner > div:nth-child(4) ul { text-align: right; }
+      .footer-col h4 { font-size: 0.6rem; margin-bottom: 0.75rem; }
+      .footer-col li { font-size: 0.75rem; margin-bottom: 0.4rem; }
+      .footer-col li a { word-break: break-all; overflow-wrap: break-word; }
+      .footer-tagline { white-space: normal; font-size: 0.75rem; }
+      .footer-bottom { font-size: 0.65rem; }
     }
   </style>
 </head>
@@ -403,7 +423,7 @@
       <li><a href="services.html">Services</a></li>
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#gallery">Gallery</a></li>
-      <li><a href="index.html#testimonials">Reviews</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
       <li class="nav-sep">·</li>
       <li><a href="team.html" class="active">Meet the Team</a></li>
     </ul>
@@ -425,7 +445,7 @@
           <li class="nav-mobile-item"><a href="services.html" class="nav-mobile-link"><span class="nav-mobile-num">01.</span>Services</a></li>
           <li class="nav-mobile-item"><a href="index.html#about" class="nav-mobile-link"><span class="nav-mobile-num">02.</span>About</a></li>
           <li class="nav-mobile-item"><a href="index.html#gallery" class="nav-mobile-link"><span class="nav-mobile-num">03.</span>Gallery</a></li>
-          <li class="nav-mobile-item"><a href="index.html#testimonials" class="nav-mobile-link"><span class="nav-mobile-num">04.</span>Reviews</a></li>
+          <li class="nav-mobile-item"><a href="reviews.html" class="nav-mobile-link"><span class="nav-mobile-num">04.</span>Reviews</a></li>
           <li class="nav-mobile-item"><a href="team.html" class="nav-mobile-link"><span class="nav-mobile-num">05.</span>Meet the Team</a></li>
           <li class="nav-mobile-item nav-mobile-book-item"><a href="booking.html" class="nav-mobile-book">Book an Appointment</a></li>
         </ul>

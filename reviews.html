@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services & Prices — Morgan Lloyd Hair</title>
+  <title>Client Reviews — Morgan Lloyd Hair</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
@@ -120,13 +120,7 @@
       cursor: pointer;
       padding: 4px;
     }
-    .nav-hamburger span {
-      display: block;
-      width: 24px;
-      height: 1px;
-      background: #fff;
-      transition: transform 0.35s cubic-bezier(0.25,1,0.5,1), opacity 0.3s ease;
-    }
+    .nav-hamburger span { display: block; width: 24px; height: 1px; background: #fff; }
     .nav-mobile-overlay {
       display: none;
       position: fixed;
@@ -284,202 +278,201 @@
       margin: 0 auto;
     }
 
-    /* ── CATEGORY TABS ── */
-    .cat-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      padding: 0 3rem;
-      background: var(--gold);
-      border-bottom: 1px solid rgba(26,26,46,0.2);
-      border-top: 1px solid rgba(255,255,255,0.15);
-      overflow-x: scroll;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      overscroll-behavior-x: contain;
-      position: sticky;
-      top: 80px;
-      z-index: 90;
+    /* ── RATING SUMMARY ── */
+    .rating-summary {
+      background: var(--navy-deep);
+      padding: 3rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(201,169,110,0.12);
     }
-    .cat-tabs::-webkit-scrollbar { display: none; }
-    .cat-tab {
+    .rating-summary-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+    }
+    .rating-score {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .rating-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
+    }
+    .rating-out-of {
       font-family: 'Jost', sans-serif;
       font-size: 0.65rem;
       letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.4);
       text-transform: uppercase;
-      color: rgba(26,26,46,0.9);
-      font-weight: 500;
-      padding: 1.1rem 1.8rem;
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: color 0.3s ease, border-color 0.3s ease;
-      white-space: nowrap;
+      margin-top: 0.3rem;
     }
-    .cat-tab:hover, .cat-tab.active {
-      color: var(--navy-deep);
-      border-bottom-color: var(--navy);
+    .rating-divider {
+      width: 1px;
+      height: 60px;
+      background: rgba(255,255,255,0.1);
     }
-
-    /* ── SERVICES CONTENT ── */
-    .services-page { padding: 0; max-width: 100%; margin: 0; background: var(--navy); }
-    .services-page-inner { padding: 4rem 3rem 0; max-width: 1100px; margin: 0 auto; }
-
-    .svc-category {
-      margin-bottom: 2.5rem;
-      scroll-margin-top: 100px;
-      background: #EDE8E0;
-      padding: 3rem 3rem;
-      border: 1px solid rgba(26,26,46,0.08);
+    .rating-details { text-align: left; }
+    .rating-stars-row {
+      color: var(--gold);
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.4rem;
     }
-    .svc-cat-header {
-      display: grid;
-      grid-template-columns: 1fr 400px;
-      gap: 4rem;
-      align-items: start;
-      margin-bottom: 3rem;
-    }
-    .svc-cat-text {}
-    .svc-cat-label {
+    .rating-total {
       font-family: 'Jost', sans-serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--navy);
-      background: var(--gold);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.2rem 0.65rem 0.2rem 0.5rem;
-      margin-bottom: 0.75rem;
-      font-weight: 500;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
     }
-    .svc-cat-label::before {
-      content: '';
-      display: block;
-      width: 14px;
-      height: 1px;
-      background: var(--navy);
-      opacity: 0.5;
-    }
-    .svc-cat-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 2.4rem;
-      color: var(--text-dark);
-      line-height: 1.1;
-      margin-bottom: 1rem;
-      letter-spacing: -0.01em;
-    }
-    .svc-cat-desc {
-      font-size: 0.85rem;
-      color: rgba(26,26,46,0.78);
-      line-height: 1.8;
-      max-width: 380px;
-    }
-    .svc-cat-img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      object-position: center 30%;
-    }
-
-    /* Price table */
-    .price-table {
-      border-top: 1px solid rgba(26,26,46,0.1);
-    }
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(26,26,46,0.07);
-      gap: 2rem;
-    }
-    .price-row:hover { background: rgba(26,26,46,0.04); margin: 0 -1rem; padding: 1rem; }
-    .price-name {
+    .rating-source {
       font-family: 'Jost', sans-serif;
-      font-weight: 400;
-      font-size: 0.88rem;
-      color: var(--text-dark);
-    }
-    .price-duration {
-      font-size: 0.72rem;
-      color: rgba(26,26,46,0.65);
-      letter-spacing: 0.05em;
-      margin-top: 0.1rem;
-    }
-    .price-amount {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      font-size: 1.05rem;
-      color: var(--text-dark);
-      white-space: nowrap;
-    }
-    .price-poa {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.3);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #7a6235;
+      margin-top: 0.25rem;
     }
 
-    /* Category divider */
-    .cat-divider {
-      display: none;
+    /* ── REVIEWS CONTENT ── */
+    .reviews-page { background: var(--cream); }
+    .reviews-page-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
     }
-    .cat-divider-line {
-      flex: 1;
-      height: 1px;
-      background: rgba(255,255,255,0.08);
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
     }
-    .cat-divider-diamond {
-      font-size: 0.45rem;
+    .review-card {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(26,26,46,0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .review-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(26,31,62,0.10);
+    }
+    .review-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .review-stars {
       color: var(--gold);
-      opacity: 0.6;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+    }
+    .review-service-badge {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: rgba(201,169,110,0.18);
+      padding: 0.3rem 0.7rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .review-quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      line-height: 0.8;
+      color: var(--gold);
+      opacity: 0.25;
+      margin-bottom: -0.5rem;
+    }
+    .review-text {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: rgba(26,26,46,0.75);
+      flex: 1;
+    }
+    .review-footer {
+      border-top: 1px solid rgba(26,26,46,0.07);
+      padding-top: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .review-author {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: 0.05em;
+    }
+    .review-location {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      color: rgba(26,26,46,0.4);
+      letter-spacing: 0.08em;
+    }
+    .review-date {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.62rem;
+      color: rgba(26,26,46,0.35);
+      letter-spacing: 0.08em;
     }
 
-    /* ── BOOKING CTA ── */
-    .svc-cta {
+    /* ── CTA ── */
+    .reviews-cta {
       background: var(--navy);
-      padding: 3.5rem 3rem 5rem;
+      padding: 5rem 3rem;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
-    .svc-cta::before {
+    .reviews-cta::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 50% 80% at 50% 50%, rgba(201,169,110,0.08) 0%, transparent 60%);
+      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(201,169,110,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
-    .svc-cta-inner { position: relative; z-index: 1; }
-    .svc-cta h2 {
+    .reviews-cta-inner { position: relative; z-index: 1; }
+    .reviews-cta h2 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
       font-size: clamp(2rem, 4vw, 3rem);
       color: #fff;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
     }
-    .svc-cta p {
+    .reviews-cta h2 em { font-style: italic; color: var(--gold-light); }
+    .reviews-cta p {
       font-size: 0.85rem;
       color: rgba(255,255,255,0.5);
-      margin-bottom: 2.5rem;
+      max-width: 440px;
+      margin: 0 auto 2rem;
+      letter-spacing: 0.04em;
     }
-
-    /* ── BUTTONS ── */
     .btn-primary {
-      display: inline-block;
       font-family: 'Jost', sans-serif;
       font-weight: 400;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--navy);
       background: var(--gold);
-      padding: 1.1rem 2.5rem;
+      padding: 1rem 2.5rem;
       text-decoration: none;
       transition: background 0.3s ease, transform 0.2s ease;
+      display: inline-block;
     }
     .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
 
@@ -597,8 +590,12 @@
       transition: opacity 0.7s cubic-bezier(0.25,1,0.5,1), transform 0.7s cubic-bezier(0.25,1,0.5,1);
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+    .reveal-delay-5 { transition-delay: 0.4s; }
+    .reveal-delay-6 { transition-delay: 0.48s; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
@@ -608,12 +605,11 @@
       .nav-hamburger { display: flex; }
       .nav-mobile-overlay { display: flex; }
       .page-hero { padding: 6rem 1.5rem 3.5rem; }
-      .services-page-inner { padding: 3rem 1.5rem 0; }
-      .svc-category { padding: 2rem 1.5rem; margin-bottom: 1.5rem; }
-      .svc-cat-header { grid-template-columns: 1fr; gap: 1.5rem; }
-      .svc-cat-img { height: 200px; }
-      .cat-tabs { padding: 0 1rem; justify-content: flex-start; top: 64px; }
-      .svc-cta { padding: 3rem 1.5rem 4.5rem; }
+      .rating-summary { padding: 2rem 1.5rem; }
+      .rating-summary-inner { gap: 2rem; }
+      .reviews-page-inner { padding: 3rem 1.5rem; }
+      .reviews-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .reviews-cta { padding: 4rem 1.5rem; }
       footer { padding: 3rem 1.5rem 1.5rem; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .footer-inner > div:first-child { grid-column: 1 / -1; }
@@ -622,26 +618,25 @@
     }
     @media (max-width: 600px) {
       .page-hero { padding: 6rem 1.25rem 3rem; }
-      .cat-tabs { gap: 0; }
-      .cat-tab { padding: 0.9rem 1.1rem; font-size: 0.6rem; }
-      .svc-cat-title { font-size: 1.8rem; }
-      .services-page-inner { padding: 2.5rem 1.25rem 0; }
-      .svc-category { padding: 1.5rem 1.25rem; }
+      .rating-summary-inner { flex-direction: column; gap: 1.5rem; }
+      .rating-divider { width: 60px; height: 1px; }
+      .rating-details { text-align: center; }
+      .reviews-page-inner { padding: 2.5rem 1.25rem; }
+      .reviews-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+      .reviews-cta { padding: 3rem 1.25rem; }
       footer { padding: 2rem 1.25rem 1rem; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 1.25rem; padding-bottom: 1.25rem; }
       .footer-bottom { font-size: 0.6rem; }
     }
     /* ── FOLDABLE UNFOLDED (769px–900px) ── */
     @media (min-width: 769px) and (max-width: 900px) {
-      .cat-tabs { justify-content: center; }
-      /* Nav: restore desktop layout */
       nav { padding: 1rem 1.5rem; }
       .nav-logo { white-space: nowrap; font-size: 0.68rem; letter-spacing: 0.2em; }
       .nav-links { display: flex; gap: 1rem; }
       .nav-links a { font-size: 0.62rem; letter-spacing: 0.1em; text-align: center; }
       .nav-book-btn { display: inline-block; text-align: center; white-space: nowrap; padding: 0.55rem 1rem; font-size: 0.62rem; letter-spacing: 0.12em; }
       .nav-hamburger { display: none; }
-      /* Footer: match landing page foldable layout */
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
       footer { padding: 3rem 2rem 2rem; }
       .footer-inner { grid-template-columns: auto auto 1fr; gap: 2rem; padding-bottom: 2rem; }
       .footer-inner > div:first-child { grid-column: 1 / -1; }
@@ -663,10 +658,10 @@
   <nav id="main-nav">
     <a href="index.html" class="nav-logo">Morgan <span>Lloyd</span> Hair</a>
     <ul class="nav-links">
-      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="services.html">Services</a></li>
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#gallery">Gallery</a></li>
-      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="reviews.html" class="active">Reviews</a></li>
       <li class="nav-sep">·</li>
       <li><a href="team.html">Meet the Team</a></li>
     </ul>
@@ -700,223 +695,190 @@
   <div class="page-hero">
     <div class="page-hero-inner reveal">
       <p class="page-hero-label"><span></span>Morgan Lloyd Hair<span></span></p>
-      <h1>Services &amp; <em>Prices</em></h1>
-      <p>Exceptional hair, tailored to you. Browse our full menu below —<br>all prices from.</p>
+      <h1>What our clients <em>say</em></h1>
+      <p>Real experiences from the people who matter most — our clients.</p>
     </div>
   </div>
 
-  <!-- ── CATEGORY TABS ── -->
-  <nav class="cat-tabs" aria-label="Service categories">
-    <a href="#cut-style" class="cat-tab">Cut &amp; Style</a>
-    <a href="#colour" class="cat-tab">Colour</a>
-    <a href="#blowdry" class="cat-tab">Blowdry &amp; Finish</a>
-    <a href="#treatments" class="cat-tab">Treatments</a>
-    <a href="#bridal" class="cat-tab">Bridal</a>
-  </nav>
-
-  <!-- ── SERVICES CONTENT ── -->
-  <main class="services-page">
-  <div class="services-page-inner">
-
-    <!-- CUT & STYLE -->
-    <section class="svc-category reveal" id="cut-style">
-      <div class="svc-cat-header">
-        <div class="svc-cat-text">
-          <p class="svc-cat-label">Cut &amp; Style</p>
-          <h2 class="svc-cat-title">Precision cuts,<br>lasting impressions</h2>
-          <p class="svc-cat-desc">Every cut begins with a thorough consultation. We shape according to your face structure, lifestyle, and vision — then finish to perfection.</p>
-        </div>
-        <img class="svc-cat-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&h=400&fit=crop&auto=format&q=80" alt="Cut and Style" />
+  <!-- ── RATING SUMMARY ── -->
+  <div class="rating-summary">
+    <div class="rating-summary-inner reveal">
+      <div class="rating-score">
+        <div class="rating-number">5.0</div>
+        <div class="rating-out-of">out of 5</div>
       </div>
-      <div class="price-table">
-        <div class="price-row">
-          <div><div class="price-name">Women's Cut &amp; Blow Dry</div><div class="price-duration">60 min</div></div>
-          <div class="price-amount">from £55</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Women's Cut (no blowdry)</div><div class="price-duration">45 min</div></div>
-          <div class="price-amount">from £40</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Men's Cut &amp; Finish</div><div class="price-duration">45 min</div></div>
-          <div class="price-amount">from £32</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Children's Cut (under 12)</div><div class="price-duration">30 min</div></div>
-          <div class="price-amount">from £25</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Dry Trim / Shape</div><div class="price-duration">30 min</div></div>
-          <div class="price-amount">from £35</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Fringe Trim</div><div class="price-duration">15 min</div></div>
-          <div class="price-amount">£15</div>
-        </div>
+      <div class="rating-divider"></div>
+      <div class="rating-details">
+        <div class="rating-stars-row">★★★★★</div>
+        <div class="rating-total">200+ verified reviews</div>
+        <div class="rating-source">Google · Facebook · Direct</div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <div class="cat-divider"><span class="cat-divider-line"></span><span class="cat-divider-diamond">◆</span><span class="cat-divider-line"></span></div>
+  <!-- ── REVIEWS GRID ── -->
+  <section class="reviews-page">
+    <div class="reviews-page-inner">
+      <div class="reviews-grid">
 
-    <!-- COLOUR -->
-    <section class="svc-category reveal" id="colour">
-      <div class="svc-cat-header">
-        <div class="svc-cat-text">
-          <p class="svc-cat-label">Colour</p>
-          <h2 class="svc-cat-title">Colour that moves<br>with you</h2>
-          <p class="svc-cat-desc">From subtle root retouches to full balayage transformations, our colourists use only premium-grade products for results that shine.</p>
+        <div class="review-card reveal reveal-delay-1">
+          <div class="review-card-top">
+            <div class="review-stars">★★★★★</div>
+            <span class="review-service-badge">Balayage</span>
+          </div>
+          <div class="review-quote-mark">"</div>
+          <p class="review-text">Honestly the best hair experience I've ever had. My balayage came out absolutely stunning — exactly what I wanted. The colour is so natural and the finish is flawless. I'll never go anywhere else.</p>
+          <div class="review-footer">
+            <div>
+              <div class="review-author">Sophie R.</div>
+              <div class="review-location">Swansea</div>
+            </div>
+            <div class="review-date">January 2026</div>
+          </div>
         </div>
-        <img class="svc-cat-img" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=700&h=400&fit=crop&auto=format&q=80" alt="Colour and Highlights" />
+
+        <div class="review-card reveal reveal-delay-2">
+          <div class="review-card-top">
+            <div class="review-stars">★★★★★</div>
+            <span class="review-service-badge">Colour</span>
+          </div>
+          <div class="review-quote-mark">"</div>
+          <p class="review-text">The atmosphere is incredible and the team are so talented. I came in with a vague idea and left with the most beautiful colour I've ever had. Everyone keeps asking where I get my hair done.</p>
+          <div class="review-footer">
+            <div>
+              <div class="review-author">James T.</div>
+              <div class="review-location">Mumbles</div>
+            </div>
+            <div class="review-date">December 2025</div>
+          </div>
+        </div>
+
+        <div class="review-card reveal reveal-delay-3">
+          <div class="review-card-top">
+            <div class="review-stars">★★★★★</div>
+            <span class="review-service-badge">Cut &amp; Style</span>
+          </div>
+          <div class="review-quote-mark">"</div>
+          <p class="review-text">From the moment I walked in, I felt completely at ease. The consultation was thorough, the cut was perfect, and I left feeling like a completely new person. Truly exceptional service.</p>
+          <div class="review-footer">
+            <div>
+              <div class="review-author">Amara K.</div>
+              <div class="review-location">Sketty</div>
+            </div>
+            <div class="review-date">November 2025</div>
+          </div>
+        </div>
+
+        <div class="review-card reveal reveal-delay-1">
+          <div class="review-card-top">
+            <div class="review-stars">★★★★★</div>
+            <span class="review-service-badge">Bridal Hair</span>
+          </div>
+          <div class="review-quote-mark">"</div>
+          <p class="review-text">I had my bridal hair done here and it was everything I dreamed of. The team went above and beyond — multiple trials, kept calm on the day, and the result was breathtaking. I felt like a princess.</p>
+          <div class="review-footer">
+            <div>
+              <div class="review-author">Erin W.</div>
+              <div class="review-location">Gower</div>
+            </div>
+            <div class="review-date">October 2025</div>
+          </div>
+        </div>
+
+        <div class="review-card reveal reveal-delay-2">
+          <div class="review-card-top">
+            <div class="review-stars">★★★★★</div>
+            <span class="review-service-badge">Blowdry &amp; Finish</span>
+          </div>
+          <div class="review-quote-mark">"</div>
+          <p class="review-text">I pop in for a blowdry before every big occasion and the result is always incredible. The team are warm, professional and genuinely passionate about what they do. My go-to place in Swansea.</p>
+          <div class="review-footer">
+            <div>
+              <div class="review-author">Caitlin M.</div>
+              <div class="review-location">Uplands</div>
+            </div>
+            <div class="review-date">February 2026</div>
+          </div>
+        </div>
+
+        <div class="review-card reveal reveal-delay-3">
+          <div class="review-card-top">
+            <div class="review-stars">★★★★★</div>
+            <span class="review-service-badge">Full Head Highlights</span>
+          </div>
+          <div class="review-quote-mark">"</div>
+          <p class="review-text">Had full head highlights for the first time and I was so nervous. The stylist took the time to explain everything and the result was absolutely gorgeous. Natural, bright and exactly my shade.</p>
+          <div class="review-footer">
+            <div>
+              <div class="review-author">Rhys D.</div>
+              <div class="review-location">Sketty</div>
+            </div>
+            <div class="review-date">March 2026</div>
+          </div>
+        </div>
+
+        <div class="review-card reveal reveal-delay-1">
+          <div class="review-card-top">
+            <div class="review-stars">★★★★★</div>
+            <span class="review-service-badge">Treatment</span>
+          </div>
+          <div class="review-quote-mark">"</div>
+          <p class="review-text">My hair was so damaged from years of colouring. One treatment session here and the difference was remarkable. It felt silky, strong, and looked so healthy. I've been coming back every month since.</p>
+          <div class="review-footer">
+            <div>
+              <div class="review-author">Naomi F.</div>
+              <div class="review-location">Bishopston</div>
+            </div>
+            <div class="review-date">January 2026</div>
+          </div>
+        </div>
+
+        <div class="review-card reveal reveal-delay-2">
+          <div class="review-card-top">
+            <div class="review-stars">★★★★★</div>
+            <span class="review-service-badge">Toner &amp; Gloss</span>
+          </div>
+          <div class="review-quote-mark">"</div>
+          <p class="review-text">Came in to refresh my blonde with a toner and the result was stunning. The colour is so vibrant and exactly what I described. The salon itself is gorgeous too — very relaxed, premium atmosphere.</p>
+          <div class="review-footer">
+            <div>
+              <div class="review-author">Tom G.</div>
+              <div class="review-location">Mumbles</div>
+            </div>
+            <div class="review-date">February 2026</div>
+          </div>
+        </div>
+
+        <div class="review-card reveal reveal-delay-3">
+          <div class="review-card-top">
+            <div class="review-stars">★★★★★</div>
+            <span class="review-service-badge">Cut &amp; Style</span>
+          </div>
+          <div class="review-quote-mark">"</div>
+          <p class="review-text">I've tried many salons in Swansea and nothing compares to Morgan Lloyd Hair. The attention to detail is unmatched. I walked out with the most precise, beautiful cut I've ever had. Absolutely brilliant.</p>
+          <div class="review-footer">
+            <div>
+              <div class="review-author">Lowri P.</div>
+              <div class="review-location">Llansamlet</div>
+            </div>
+            <div class="review-date">March 2026</div>
+          </div>
+        </div>
+
       </div>
-      <div class="price-table">
-        <div class="price-row">
-          <div><div class="price-name">Root Retouch (single colour)</div><div class="price-duration">60 min</div></div>
-          <div class="price-amount">from £65</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Full Head Colour</div><div class="price-duration">90 min</div></div>
-          <div class="price-amount">from £80</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Partial Highlights (T-section)</div><div class="price-duration">75 min</div></div>
-          <div class="price-amount">from £85</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Full Head Highlights</div><div class="price-duration">120 min</div></div>
-          <div class="price-amount">from £110</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Balayage / Ombré</div><div class="price-duration">150 min</div></div>
-          <div class="price-amount">from £120</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Toner / Gloss</div><div class="price-duration">30 min</div></div>
-          <div class="price-amount">from £35</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Colour Correction</div><div class="price-duration">Consultation required</div></div>
-          <span class="price-poa">POA</span>
-        </div>
-      </div>
-    </section>
-
-    <div class="cat-divider"><span class="cat-divider-line"></span><span class="cat-divider-diamond">◆</span><span class="cat-divider-line"></span></div>
-
-    <!-- BLOWDRY & FINISH -->
-    <section class="svc-category reveal" id="blowdry">
-      <div class="svc-cat-header">
-        <div class="svc-cat-text">
-          <p class="svc-cat-label">Blowdry &amp; Finish</p>
-          <h2 class="svc-cat-title">Polish for every<br>occasion</h2>
-          <p class="svc-cat-desc">Step out looking salon-fresh. Whether a sleek everyday blow dry or a full special-occasion updo, we'll have you ready to turn heads.</p>
-        </div>
-        <img class="svc-cat-img" src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=700&h=400&fit=crop&auto=format&q=80" alt="Blowdry and Finish" />
-      </div>
-      <div class="price-table">
-        <div class="price-row">
-          <div><div class="price-name">Blow Dry (short / medium hair)</div><div class="price-duration">45 min</div></div>
-          <div class="price-amount">from £38</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Blow Dry (long hair)</div><div class="price-duration">60 min</div></div>
-          <div class="price-amount">from £48</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Hair Up / Updo</div><div class="price-duration">60 min</div></div>
-          <div class="price-amount">from £55</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Special Occasion Style</div><div class="price-duration">75 min</div></div>
-          <div class="price-amount">from £65</div>
-        </div>
-      </div>
-    </section>
-
-    <div class="cat-divider"><span class="cat-divider-line"></span><span class="cat-divider-diamond">◆</span><span class="cat-divider-line"></span></div>
-
-    <!-- TREATMENTS -->
-    <section class="svc-category reveal" id="treatments">
-      <div class="svc-cat-header">
-        <div class="svc-cat-text">
-          <p class="svc-cat-label">Treatments</p>
-          <h2 class="svc-cat-title">Restore, repair,<br>revive</h2>
-          <p class="svc-cat-desc">Give your hair the care it deserves. Our in-salon treatments use the finest professional products to restore strength, shine, and health.</p>
-        </div>
-        <img class="svc-cat-img" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=700&h=400&fit=crop&auto=format&q=80" alt="Treatments" />
-      </div>
-      <div class="price-table">
-        <div class="price-row">
-          <div><div class="price-name">Olaplex Bond Treatment</div><div class="price-duration">Add-on or standalone</div></div>
-          <div class="price-amount">from £45</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Keratin Smoothing</div><div class="price-duration">180 min</div></div>
-          <div class="price-amount">from £150</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Scalp Health Treatment</div><div class="price-duration">45 min</div></div>
-          <div class="price-amount">from £38</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Deep Conditioning Mask</div><div class="price-duration">30 min add-on</div></div>
-          <div class="price-amount">from £28</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Glossing &amp; Shine Treatment</div><div class="price-duration">30 min</div></div>
-          <div class="price-amount">from £32</div>
-        </div>
-      </div>
-    </section>
-
-    <div class="cat-divider"><span class="cat-divider-line"></span><span class="cat-divider-diamond">◆</span><span class="cat-divider-line"></span></div>
-
-    <!-- BRIDAL -->
-    <section class="svc-category reveal" id="bridal">
-      <div class="svc-cat-header">
-        <div class="svc-cat-text">
-          <p class="svc-cat-label">Bridal</p>
-          <h2 class="svc-cat-title">Your most important<br>day, perfected</h2>
-          <p class="svc-cat-desc">We understand the gravity of your wedding day. Our bridal team is dedicated, experienced, and will work with you from trial to the morning itself.</p>
-        </div>
-        <img class="svc-cat-img" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=700&h=400&fit=crop&auto=format&q=80" alt="Bridal Hair" />
-      </div>
-      <div class="price-table">
-        <div class="price-row">
-          <div><div class="price-name">Bridal Hair Trial</div><div class="price-duration">90 min</div></div>
-          <div class="price-amount">from £75</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Wedding Day Hair</div><div class="price-duration">90 min</div></div>
-          <div class="price-amount">from £150</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Bridesmaid Hair (per person)</div><div class="price-duration">60 min</div></div>
-          <div class="price-amount">from £65</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Mother of Bride / Groom</div><div class="price-duration">75 min</div></div>
-          <div class="price-amount">from £70</div>
-        </div>
-        <div class="price-row">
-          <div><div class="price-name">Full Bridal Party Package</div><div class="price-duration">Consultation required</div></div>
-          <span class="price-poa">POA</span>
-        </div>
-      </div>
-    </section>
-
-  </div><!-- /services-page-inner -->
-  </main>
+    </div>
+  </section>
 
   <!-- ── CTA ── -->
-  <section class="svc-cta">
-    <div class="svc-cta-inner reveal">
+  <section class="reviews-cta">
+    <div class="reviews-cta-inner reveal">
       <p style="font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:0.75rem;">
         <span style="display:block;width:28px;height:1px;background:var(--gold);opacity:0.6;"></span>
-        Ready to book
+        Ready to experience it
         <span style="display:block;width:28px;height:1px;background:var(--gold);opacity:0.6;"></span>
       </p>
-      <h2>Reserve your chair today</h2>
-      <p>All prices shown are starting from. Final pricing confirmed at consultation.</p>
+      <h2>Join our happy <em>clients</em></h2>
+      <p>Book your appointment today and experience the Morgan Lloyd Hair difference for yourself.</p>
       <a href="booking.html" class="btn-primary">Book an Appointment</a>
     </div>
   </section>
@@ -994,20 +956,9 @@
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Active tab on scroll
-    const tabs = document.querySelectorAll('.cat-tab');
-    const sections = document.querySelectorAll('.svc-category');
-    const updateActiveTabs = () => {
-      const scrollPos = window.scrollY + window.innerHeight * 0.45;
-      let activeId = null;
-      sections.forEach(s => { if (s.offsetTop <= scrollPos) activeId = s.id; });
-      tabs.forEach(t => t.classList.toggle('active', activeId !== null && t.getAttribute('href') === '#' + activeId));
-    };
-    window.addEventListener('scroll', updateActiveTabs, { passive: true });
-    updateActiveTabs();
   </script>
+
 </body>
 </html>
