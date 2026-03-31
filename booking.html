@@ -110,7 +110,9 @@
       justify-content: center;
       gap: 0.75rem;
     }
-    .booking-label span { display: block; width: 24px; height: 1px; background: var(--gold); opacity: 0.6; }
+    .booking-label > span { display: block; width: 24px; height: 1px; background: var(--gold); opacity: 0.6; }
+    .booking-label-inner { display: block; text-align: center; white-space: nowrap; }
+    .booking-label-sub { display: block; font-size: 0.5rem; letter-spacing: 0.25em; color: rgba(255,255,255,0.45); margin-top: 0.15rem; }
     .booking-header h1 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
@@ -667,7 +669,7 @@
   <!-- ── HEADER ── -->
   <div class="booking-header">
     <div class="booking-header-inner">
-      <div class="booking-label"><span></span>Morgan Lloyd Hair · Sketty, Swansea<span></span></div>
+      <div class="booking-label"><span></span><span class="booking-label-inner"><span>Morgan Lloyd Hair</span><span class="booking-label-sub">Sketty · Swansea</span></span><span></span></div>
       <h1>Book an Appointment</h1>
       <p>Choose your stylist, service, and time — we'll take care of the rest.</p>
     </div>
