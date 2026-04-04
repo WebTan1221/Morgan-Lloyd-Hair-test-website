@@ -100,58 +100,210 @@
     .page-hero h1 em { font-style:italic; color:var(--gold-light); }
     .page-hero-sub { font-size:0.8rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em; }
 
-    /* ── GALLERY CAROUSEL ── */
-    .carousel-section {
-      padding: 3.5rem 0 4rem;
+    /* ── GALLERY SECTION ── */
+    .gallery-section {
       background: var(--cream);
+      padding: 3.5rem 0 5rem;
     }
-    .carousel-wrapper {
-      position: relative;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 4rem;
-    }
-    .carousel-track {
+
+    /* filter bar */
+    .gallery-filter-bar {
       display: flex;
-      overflow-x: scroll;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      gap: 1.5rem;
-      padding-bottom: 0.5rem;
-      cursor: grab;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.1rem;
+      padding: 0 1.5rem;
+      margin-bottom: 3rem;
     }
-    .carousel-track:active { cursor: grabbing; }
-    .carousel-track::-webkit-scrollbar { display: none; }
-
-    .gallery-card {
-      flex: 0 0 380px;
-      scroll-snap-align: center;
-      background: var(--navy);
-      overflow: hidden;
+    .filter-btn {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(26,31,62,0.45);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.55rem 1.3rem;
       position: relative;
+      transition: color 0.3s ease;
     }
-    .gallery-card-img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-      object-position: center;
+    .filter-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.35s cubic-bezier(0.25,1,0.5,1);
+    }
+    .filter-btn.active { color: var(--text-dark); }
+    .filter-btn.active::after { width: calc(100% - 2.6rem); }
+    .filter-btn:hover { color: var(--text-dark); }
+    .filter-btn sup {
+      font-size: 0.44rem;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+
+    /* masonry grid */
+    .masonry-grid {
+      columns: 3;
+      column-gap: 14px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .g-item {
+      break-inside: avoid;
+      margin-bottom: 14px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
       display: block;
-      transition: transform 0.5s cubic-bezier(0.25,1,0.5,1);
     }
-    .gallery-card:hover .gallery-card-img { transform: scale(1.04); }
+    .g-item.hidden { display: none; }
+    .g-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: grayscale(20%);
+      transition: transform 0.65s cubic-bezier(0.25,1,0.5,1), filter 0.45s ease;
+    }
+    .g-item:hover img { transform: scale(1.05); filter: grayscale(0%); }
+    .g-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,31,62,0.72) 0%, rgba(26,31,62,0.15) 45%, transparent 65%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .g-item:hover .g-item-overlay { opacity: 1; }
+    .g-item-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.25rem 1rem 0.85rem;
+      transform: translateY(6px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.25,1,0.5,1), opacity 0.35s ease;
+    }
+    .g-item:hover .g-item-label { transform: translateY(0); opacity: 1; }
+    .g-item-name {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fff;
+      display: block;
+    }
+    .g-item-cat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      color: var(--gold-light);
+      display: block;
+      margin-top: 0.1rem;
+    }
+    .g-item-zoom {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .g-item:hover .g-item-zoom { opacity: 1; transform: scale(1); }
+    .g-item-zoom svg { width: 12px; height: 12px; stroke: #fff; fill: none; stroke-width: 1.5; }
 
-    /* ── ARROWS ── */
-    .carousel-arrow { position:absolute; top:calc(50% - 30px); transform:translateY(-50%); width:40px; height:40px; background:var(--navy); border:1px solid rgba(201,169,110,0.3); color:var(--gold); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.25s ease, border-color 0.25s ease; z-index:2; }
-    .carousel-arrow:hover { background:var(--navy-deep); border-color:var(--gold); }
-    .carousel-arrow.prev { left:0; }
-    .carousel-arrow.next { right:0; }
-    .carousel-arrow.disabled { opacity:0.25; pointer-events:none; }
-
-    /* ── DOTS ── */
-    .carousel-dots { display:flex; justify-content:center; gap:0.5rem; margin-top:1.75rem; }
-    .carousel-dot { width:6px; height:6px; background:rgba(26,31,62,0.2); border-radius:50%; cursor:pointer; transition:background 0.25s ease, transform 0.25s ease; }
-    .carousel-dot.active { background:var(--navy); transform:scale(1.3); }
+    /* lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(18,22,47,0.96);
+      backdrop-filter: blur(12px);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner {
+      position: relative;
+      max-width: min(90vw, 900px);
+      max-height: 90vh;
+      cursor: default;
+    }
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+      display: block;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(255,255,255,0.55);
+      font-size: 1.35rem;
+      line-height: 1;
+      transition: color 0.2s ease;
+      padding: 0.25rem;
+    }
+    .lightbox-close:hover { color: #fff; }
+    .lightbox-arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,169,110,0.2);
+      color: rgba(255,255,255,0.65);
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+      z-index: 9001;
+    }
+    .lightbox-arrow:hover { background: rgba(201,169,110,0.12); border-color: var(--gold); color: #fff; }
+    .lb-prev { left: 1.25rem; }
+    .lb-next { right: 1.25rem; }
+    .lightbox-caption {
+      position: absolute;
+      bottom: -1.75rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
 
     /* ── CTA ── */
     .gallery-cta { background:var(--navy); padding:3.5rem 3rem; text-align:center; position:relative; overflow:hidden; }
@@ -187,6 +339,21 @@
     .footer-divider { width:100%; height:1px; background:rgba(255,255,255,0.06); margin:1rem 0; }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .masonry-grid { columns: 2; column-gap: 12px; }
+      .g-item { margin-bottom: 12px; }
+    }
+    @media (max-width: 640px) {
+      .masonry-grid { columns: 1; padding: 0 1rem; }
+      .g-item { margin-bottom: 10px; }
+      /* always show overlay on mobile (no hover) */
+      .g-item-overlay { opacity: 0.6; }
+      .g-item-label { opacity: 1; transform: translateY(0); }
+      .g-item-zoom { display: none; }
+      .lightbox-arrow { width: 36px; height: 36px; }
+      .lb-prev { left: 0.5rem; }
+      .lb-next { right: 0.5rem; }
+    }
     @media (max-width: 900px) {
       nav { padding:1.25rem 1.5rem; }
       .nav-links { display:none; }
@@ -194,9 +361,6 @@
       .nav-hamburger { display:flex; }
       .nav-mobile-overlay { display:flex; }
       .page-hero { padding:6rem 1.5rem 3rem; }
-      .carousel-wrapper { padding:0 3rem; }
-      .gallery-card { flex:0 0 300px; }
-      .gallery-card-img { height:300px; }
       footer { padding:3rem 1.5rem 1.5rem; }
       .footer-inner { grid-template-columns:1fr 1fr; gap:2rem; }
       .footer-inner > div:first-child { grid-column:1 / -1; }
@@ -205,10 +369,6 @@
     }
     @media (max-width: 600px) {
       .page-hero { padding:6rem 1.25rem 2.75rem; }
-      .carousel-wrapper { padding:0 2.5rem; }
-      .gallery-card { flex:0 0 calc(100vw - 5rem); }
-      .gallery-card-img { height:calc(100vw - 5rem); }
-      .carousel-arrow { width:34px; height:34px; font-size:0.85rem; }
       footer { padding:2rem 1.25rem 1rem; }
       .footer-inner { grid-template-columns:1fr 1fr; gap:1.25rem; padding-bottom:1.25rem; }
       .footer-bottom { font-size:0.6rem; }
@@ -303,49 +463,164 @@
     </div>
   </div>
 
-  <!-- ── GALLERY CAROUSEL ── -->
-  <section class="carousel-section">
-    <div class="carousel-wrapper">
-      <button class="carousel-arrow prev" id="gal-prev" aria-label="Previous">&#8592;</button>
-      <div class="carousel-track" id="gal-track">
+  <!-- ── GALLERY ── -->
+  <section class="gallery-section">
 
-        <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=760&h=760&fit=crop&crop=top&auto=format" alt="Colour result" />
-        </div>
-
-        <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=760&h=760&fit=crop&crop=top&auto=format" alt="Cut and finish" />
-        </div>
-
-        <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=760&h=760&fit=crop&crop=center&auto=format" alt="Curly styling" />
-        </div>
-
-        <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=760&h=760&fit=crop&crop=top&auto=format" alt="Blowdry" />
-        </div>
-
-        <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=760&h=760&fit=crop&crop=top&auto=format" alt="Treatment" />
-        </div>
-
-        <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=760&h=760&fit=crop&crop=top&auto=format" alt="Blowdry finish" />
-        </div>
-
-        <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=760&h=760&fit=crop&crop=top&auto=format" alt="Balayage" />
-        </div>
-
-        <div class="gallery-card">
-          <img class="gallery-card-img" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=760&h=760&fit=crop&crop=top&auto=format" alt="Colour treatment" />
-        </div>
-
-      </div>
-      <button class="carousel-arrow next" id="gal-next" aria-label="Next">&#8594;</button>
+    <!-- Filter bar -->
+    <div class="gallery-filter-bar">
+      <button class="filter-btn active" data-filter="all">All<sup>18</sup></button>
+      <button class="filter-btn" data-filter="colour">Colour<sup>5</sup></button>
+      <button class="filter-btn" data-filter="balayage">Balayage<sup>4</sup></button>
+      <button class="filter-btn" data-filter="cuts">Cuts<sup>5</sup></button>
+      <button class="filter-btn" data-filter="treatments">Treatments<sup>4</sup></button>
     </div>
-    <div class="carousel-dots" id="gal-dots"></div>
+
+    <!-- Masonry grid -->
+    <div class="masonry-grid" id="masonry-grid">
+
+      <!-- Colour -->
+      <div class="g-item" data-category="colour" data-label="Colour Work">
+        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=720&fit=crop&crop=top&auto=format&q=85" alt="Colour Work" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Colour Work</span><span class="g-item-cat">Colour</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="colour" data-label="Colour Treatment">
+        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&h=580&fit=crop&crop=top&auto=format&q=85" alt="Colour Treatment" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Colour Treatment</span><span class="g-item-cat">Colour</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="colour" data-label="Colour & Style">
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=500&fit=crop&crop=top&auto=format&q=85" alt="Colour & Style" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Colour &amp; Style</span><span class="g-item-cat">Colour</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="colour" data-label="Vivid Colour">
+        <img src="https://images.unsplash.com/photo-1569519032609-e73e6b73e7bf?w=600&h=680&fit=crop&crop=top&auto=format&q=85" alt="Vivid Colour" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Vivid Colour</span><span class="g-item-cat">Colour</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="colour" data-label="Root Colour">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=560&fit=crop&crop=top&auto=format&q=85" alt="Root Colour" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Root Colour</span><span class="g-item-cat">Colour</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <!-- Balayage -->
+      <div class="g-item" data-category="balayage" data-label="Balayage">
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&h=700&fit=crop&crop=top&auto=format&q=85" alt="Balayage" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Balayage</span><span class="g-item-cat">Balayage</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="balayage" data-label="Balayage Blonde">
+        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=600&h=520&fit=crop&crop=top&auto=format&q=85" alt="Balayage Blonde" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Balayage Blonde</span><span class="g-item-cat">Balayage</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="balayage" data-label="Sun-Kissed Balayage">
+        <img src="https://images.unsplash.com/photo-1522337386822-9d3f48ef3e77?w=600&h=650&fit=crop&crop=top&auto=format&q=85" alt="Sun-Kissed Balayage" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Sun-Kissed Balayage</span><span class="g-item-cat">Balayage</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="balayage" data-label="Balayage Result">
+        <img src="https://images.unsplash.com/photo-1520341280432-4749d4d7bcf1?w=600&h=600&fit=crop&crop=top&auto=format&q=85" alt="Balayage Result" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Balayage Result</span><span class="g-item-cat">Balayage</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <!-- Cuts -->
+      <div class="g-item" data-category="cuts" data-label="Precision Cut">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=600&fit=crop&crop=top&auto=format&q=85" alt="Precision Cut" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Precision Cut</span><span class="g-item-cat">Cuts</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="cuts" data-label="Curly Cut">
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&h=560&fit=crop&crop=center&auto=format&q=85" alt="Curly Cut" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Curly Cut</span><span class="g-item-cat">Cuts</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="cuts" data-label="Bob Cut">
+        <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=600&h=720&fit=crop&crop=top&auto=format&q=85" alt="Bob Cut" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Bob Cut</span><span class="g-item-cat">Cuts</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="cuts" data-label="Blowdry Finish">
+        <img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=600&h=480&fit=crop&crop=top&auto=format&q=85" alt="Blowdry Finish" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Blowdry Finish</span><span class="g-item-cat">Cuts</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="cuts" data-label="Cut & Style">
+        <img src="https://images.unsplash.com/photo-1635776063584-2d4cfe9f5dc4?w=600&h=640&fit=crop&crop=top&auto=format&q=85" alt="Cut & Style" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Cut &amp; Style</span><span class="g-item-cat">Cuts</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <!-- Treatments -->
+      <div class="g-item" data-category="treatments" data-label="Blowdry Treatment">
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&h=600&fit=crop&crop=top&auto=format&q=85" alt="Blowdry Treatment" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Blowdry Treatment</span><span class="g-item-cat">Treatments</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="treatments" data-label="Hair Treatment">
+        <img src="https://images.unsplash.com/photo-1576426863848-c21f53c60b19?w=600&h=520&fit=crop&crop=top&auto=format&q=85" alt="Hair Treatment" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Hair Treatment</span><span class="g-item-cat">Treatments</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="treatments" data-label="Shine Treatment">
+        <img src="https://images.unsplash.com/photo-1570169982453-5a765b3ed574?w=600&h=680&fit=crop&crop=top&auto=format&q=85" alt="Shine Treatment" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Shine Treatment</span><span class="g-item-cat">Treatments</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+      <div class="g-item" data-category="treatments" data-label="Deep Condition">
+        <img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=600&h=440&fit=crop&crop=top&auto=format&q=85" alt="Deep Condition" loading="lazy" />
+        <div class="g-item-overlay"></div>
+        <div class="g-item-label"><span class="g-item-name">Deep Condition</span><span class="g-item-cat">Treatments</span></div>
+        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+
+    </div>
   </section>
+
+  <!-- ── LIGHTBOX ── -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-arrow lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lb-close" aria-label="Close">&#x2715;</button>
+      <img class="lightbox-img" id="lb-img" src="" alt="" />
+      <div class="lightbox-caption" id="lb-caption"></div>
+    </div>
+    <button class="lightbox-arrow lb-next" id="lb-next" aria-label="Next">&#8594;</button>
+  </div>
 
   <!-- ── CTA ── -->
   <section class="gallery-cta">
@@ -432,129 +707,74 @@
     mobileOverlay.addEventListener('click', e => { if (e.target === mobileOverlay) closeOverlay(); });
     mobileOverlay.querySelectorAll('a').forEach(link => link.addEventListener('click', closeOverlay));
 
-    // ── INFINITE CENTER CAROUSEL ──
-    (function() {
-      const track = document.getElementById('gal-track');
-      const dotsContainer = document.getElementById('gal-dots');
-      const prevBtn = document.getElementById('gal-prev');
-      const nextBtn = document.getElementById('gal-next');
-
-      const origCards = Array.from(track.querySelectorAll('.gallery-card'));
-      const N = origCards.length;
-
-      // Append end clones
-      origCards.forEach(card => {
-        const clone = card.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        track.appendChild(clone);
-      });
-      // Prepend start clones
-      for (let i = N - 1; i >= 0; i--) {
-        const clone = origCards[i].cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        track.insertBefore(clone, track.firstChild);
-      }
-
-      const allCards = Array.from(track.children);
-
-      function getScrollLeft(absIdx) {
-        const card = allCards[absIdx];
-        const trackRect = track.getBoundingClientRect();
-        const cardRect = card.getBoundingClientRect();
-        const offset = (cardRect.left + cardRect.width / 2) - (trackRect.left + trackRect.width / 2);
-        return track.scrollLeft + offset;
-      }
-
-      function getRealIndex(absIdx) {
-        return ((absIdx - N) % N + N) % N;
-      }
-
-      function getAbsIndex() {
-        const trackRect = track.getBoundingClientRect();
-        const trackCenter = trackRect.left + trackRect.width / 2;
-        let closest = N, minDist = Infinity;
-        allCards.forEach((card, i) => {
-          const rect = card.getBoundingClientRect();
-          const dist = Math.abs((rect.left + rect.width / 2) - trackCenter);
-          if (dist < minDist) { minDist = dist; closest = i; }
-        });
-        return closest;
-      }
-
-      // Build N dots
-      for (let i = 0; i < N; i++) {
-        const dot = document.createElement('button');
-        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Go to image ' + (i + 1));
-        const idx = i;
-        dot.addEventListener('click', () => {
-          track.scrollTo({ left: getScrollLeft(N + idx), behavior: 'smooth' });
-        });
-        dotsContainer.appendChild(dot);
-      }
-      const dots = Array.from(dotsContainer.querySelectorAll('.carousel-dot'));
-
-      function updateDots(realIdx) {
-        dots.forEach((d, i) => d.classList.toggle('active', i === realIdx));
-      }
-
-      // Click any card to center it
-      allCards.forEach((card, absIdx) => {
-        card.addEventListener('click', () => {
-          track.scrollTo({ left: getScrollLeft(absIdx), behavior: 'smooth' });
-        });
-      });
-
-      // Arrow buttons
-      prevBtn.addEventListener('click', () => {
-        const abs = getAbsIndex();
-        track.scrollTo({ left: getScrollLeft(abs - 1), behavior: 'smooth' });
-      });
-      nextBtn.addEventListener('click', () => {
-        const abs = getAbsIndex();
-        track.scrollTo({ left: getScrollLeft(abs + 1), behavior: 'smooth' });
-      });
-      prevBtn.classList.remove('disabled');
-      nextBtn.classList.remove('disabled');
-
-      // Scroll: update dots + loop teleport
-      let settleTimer;
-      track.addEventListener('scroll', () => {
-        clearTimeout(settleTimer);
-        const abs = getAbsIndex();
-        updateDots(getRealIndex(abs));
-        settleTimer = setTimeout(() => {
-          if (abs < N) {
-            track.scrollLeft = getScrollLeft(abs + N);
-          } else if (abs >= 2 * N) {
-            track.scrollLeft = getScrollLeft(abs - N);
+    // ── FILTER ──
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.g-item');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.filter;
+        items.forEach(item => {
+          if (cat === 'all' || item.dataset.category === cat) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
           }
-        }, 150);
-      }, { passive: true });
-
-      track.addEventListener('mousedown', () => clearTimeout(settleTimer));
-      track.addEventListener('touchstart', () => clearTimeout(settleTimer), { passive: true });
-
-      // Drag to scroll
-      let isDown = false, startX, scrollStart;
-      track.addEventListener('mousedown', e => {
-        isDown = true; startX = e.pageX - track.offsetLeft; scrollStart = track.scrollLeft;
-        track.style.cursor = 'grabbing';
+        });
       });
-      track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
-      track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
-      track.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        e.preventDefault();
-        track.scrollLeft = scrollStart - (e.pageX - track.offsetLeft - startX);
-      });
+    });
 
-      // Initialize: center the first real card
-      requestAnimationFrame(() => {
-        track.scrollLeft = getScrollLeft(N);
-        updateDots(0);
-      });
-    })();
+    // ── LIGHTBOX ──
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbCaption = document.getElementById('lb-caption');
+    let visibleItems = [];
+    let currentIdx = 0;
+
+    function getVisible() {
+      return Array.from(items).filter(i => !i.classList.contains('hidden'));
+    }
+    function openLightbox(item) {
+      visibleItems = getVisible();
+      currentIdx = visibleItems.indexOf(item);
+      updateLightbox();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function updateLightbox() {
+      const item = visibleItems[currentIdx];
+      const img = item.querySelector('img');
+      lbImg.src = img.src.replace(/w=\d+&h=\d+/, 'w=1400&h=1000');
+      lbImg.alt = img.alt;
+      lbCaption.textContent = item.dataset.label || '';
+    }
+    items.forEach(item => {
+      item.addEventListener('click', () => openLightbox(item));
+    });
+    document.getElementById('lb-close').addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+    document.getElementById('lb-prev').addEventListener('click', e => {
+      e.stopPropagation();
+      currentIdx = (currentIdx - 1 + visibleItems.length) % visibleItems.length;
+      updateLightbox();
+    });
+    document.getElementById('lb-next').addEventListener('click', e => {
+      e.stopPropagation();
+      currentIdx = (currentIdx + 1) % visibleItems.length;
+      updateLightbox();
+    });
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') { currentIdx = (currentIdx - 1 + visibleItems.length) % visibleItems.length; updateLightbox(); }
+      if (e.key === 'ArrowRight') { currentIdx = (currentIdx + 1) % visibleItems.length; updateLightbox(); }
+    });
+
   </script>
 </body>
 </html>
