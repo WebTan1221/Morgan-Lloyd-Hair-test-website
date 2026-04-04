@@ -1093,182 +1093,170 @@
     .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-    /* ── MOBILE OVERLAY MENU ── */
+    /* ── MOBILE FULLSCREEN NAV ── */
     .nav-mobile-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(10,12,30,0);
-      z-index: 99;
-      justify-content: flex-end;
-      pointer-events: none;
-      transition: background 0.5s ease;
-    }
-    .nav-mobile-overlay.open {
-      background: rgba(10,12,30,0.72);
-      pointer-events: auto;
-    }
-    .nav-mobile-panel {
-      position: relative;
-      width: min(72vw, 300px);
-      height: 100%;
+      z-index: 99; /* below nav bar at 100 — keeps hamburger/× clickable */
       background: var(--navy);
-      display: flex;
       flex-direction: column;
-      transform: translateX(calc(100% + 100px));
-      transition: transform 0.75s cubic-bezier(0.76,0,0.24,1);
-      overflow: visible;
-      box-shadow: -20px 0 60px rgba(0,0,0,0.5);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.45s cubic-bezier(0.25,1,0.5,1);
     }
-    /* subtle grain on panel */
-    .nav-mobile-panel::before {
+    /* grain texture */
+    .nav-mobile-overlay::before {
       content: '';
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
     }
-    /* gold edge line */
-    .nav-mobile-panel::after {
+    /* warm gold radial glow — gives depth to flat navy */
+    .nav-mobile-overlay::after {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 1px;
-      height: 100%;
-      background: linear-gradient(to bottom, transparent, rgba(201,169,110,0.5) 20%, rgba(201,169,110,0.25) 80%, transparent);
+      inset: 0;
       pointer-events: none;
-      z-index: 1;
+      z-index: 0;
+      background: radial-gradient(ellipse at 50% 45%, rgba(201,169,110,0.07) 0%, transparent 68%);
     }
-    .nav-mobile-overlay.open .nav-mobile-panel { transform: translateX(0); }
-    .nav-mobile-curve {
-      position: absolute;
-      top: 0;
-      left: -99px;
-      width: 100px;
-      height: 100%;
-      pointer-events: none;
+    .nav-mobile-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
     }
-    .nav-mobile-inner {
+
+    /* ── Nav links container ── */
+    .nmfs-nav {
       position: relative;
-      z-index: 2;
-      padding: 0;
+      z-index: 1;
+      flex: 1;
       display: flex;
       flex-direction: column;
-      height: 100%;
-      overflow-y: auto;
+      justify-content: center;
+      padding: 0 2.25rem;
+      /* push content clear of nav bar */
+      padding-top: 4.5rem;
+      padding-bottom: 0.5rem;
     }
-    /* panel top: wordmark block */
-    .nav-mobile-brand {
-      padding: 2rem 1.75rem 1.5rem;
-      border-bottom: 1px solid rgba(201,169,110,0.15);
-    }
-    .nav-mobile-brand-name {
-      font-family: 'Jost', sans-serif;
-      font-weight: 200;
-      font-size: 0.72rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: #fff;
-    }
-    .nav-mobile-brand-name strong { font-weight: 500; }
-    .nav-mobile-brand-sub {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-top: 0.3rem;
-    }
-    .nav-mobile-brand-sub span {
-      flex: 1;
+    .nmfs-rule {
       height: 1px;
-      background: rgba(201,169,110,0.4);
+      background: rgba(201,169,110,0.18);
+      opacity: 0;
+      transform: scaleX(0.4);
+      transform-origin: left;
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25,1,0.5,1);
     }
-    .nav-mobile-brand-sub p {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.52rem;
-      letter-spacing: 0.45em;
-      text-transform: uppercase;
-      color: var(--gold);
+    .nav-mobile-overlay.open .nmfs-rule {
+      opacity: 1;
+      transform: scaleX(1);
     }
-    .nav-mobile-close {
-      position: absolute;
-      top: 1.1rem; right: 1.1rem;
-      background: none;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.55);
-      font-size: 0.7rem;
-      line-height: 1;
-      cursor: pointer;
-      padding: 0.4rem 0.5rem;
-      z-index: 10;
-      transition: border-color 0.2s ease, color 0.2s ease;
-    }
-    .nav-mobile-close:hover { color: var(--gold); border-color: rgba(201,169,110,0.5); }
-    .nav-mobile-links {
-      list-style: none;
-      padding: 0.5rem 0;
-      margin: 0;
-      flex: 1;
-    }
-    .nav-mobile-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .nav-mobile-link {
+    /* stagger each rule slightly after its preceding link */
+    .nav-mobile-overlay.open .nmfs-rule:nth-of-type(1) { transition-delay: 0.05s; }
+    .nav-mobile-overlay.open .nmfs-rule:nth-of-type(2) { transition-delay: 0.13s; }
+    .nav-mobile-overlay.open .nmfs-rule:nth-of-type(3) { transition-delay: 0.21s; }
+    .nav-mobile-overlay.open .nmfs-rule:nth-of-type(4) { transition-delay: 0.29s; }
+    .nav-mobile-overlay.open .nmfs-rule:nth-of-type(5) { transition-delay: 0.37s; }
+    .nav-mobile-overlay.open .nmfs-rule:nth-of-type(6) { transition-delay: 0.45s; }
+
+    .nmfs-link {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      padding: 0.95rem 0;
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity 0.55s ease,
+        transform 0.55s cubic-bezier(0.25,1,0.5,1),
+        color 0.2s ease;
+    }
+    .nav-mobile-overlay.open .nmfs-link {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* stagger each link */
+    .nav-mobile-overlay.open .nmfs-link[style*="--i:0"] { transition-delay: 0.08s; }
+    .nav-mobile-overlay.open .nmfs-link[style*="--i:1"] { transition-delay: 0.16s; }
+    .nav-mobile-overlay.open .nmfs-link[style*="--i:2"] { transition-delay: 0.24s; }
+    .nav-mobile-overlay.open .nmfs-link[style*="--i:3"] { transition-delay: 0.32s; }
+    .nav-mobile-overlay.open .nmfs-link[style*="--i:4"] { transition-delay: 0.40s; }
+
+    .nmfs-link-left {
+      display: flex;
+      align-items: baseline;
       gap: 1rem;
+    }
+    .nmfs-num {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: rgba(201,169,110,0.55);
+      transition: color 0.2s ease;
+      min-width: 1.5rem;
+    }
+    .nmfs-text {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      font-size: 1.6rem;
-      letter-spacing: 0.01em;
-      color: rgba(255,255,255,0.82);
-      text-decoration: none;
-      padding: 0.7rem 1.75rem;
-      transition: color 0.25s ease, padding-left 0.3s cubic-bezier(0.25,1,0.5,1);
+      font-size: clamp(1.9rem, 7vw, 2.6rem);
+      letter-spacing: -0.01em;
+      color: rgba(255,255,255,0.8);
+      line-height: 1;
+      transition: color 0.2s ease;
     }
-    .nav-mobile-link:hover {
-      color: #fff;
-      padding-left: 2.25rem;
+    .nmfs-arrow {
+      font-size: 0.9rem;
+      color: var(--gold);
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.25,1,0.5,1);
     }
-    .nav-mobile-link:hover .nav-mobile-num { color: var(--gold); }
-    .nav-mobile-num {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 300;
-      color: rgba(201,169,110,0.55);
-      letter-spacing: 0.12em;
-      min-width: 1.4rem;
-      transition: color 0.25s ease;
+    .nmfs-link:hover .nmfs-text   { color: #fff; }
+    .nmfs-link:hover .nmfs-num    { color: var(--gold); }
+    .nmfs-link:hover .nmfs-arrow  { opacity: 1; transform: translateX(0); }
+
+    /* ── Bottom: CTA + location ── */
+    .nmfs-bottom {
+      position: relative;
+      z-index: 1;
+      padding: 1.5rem 2.25rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s 0.45s ease, transform 0.5s 0.45s cubic-bezier(0.25,1,0.5,1);
     }
-    .nav-mobile-book-item {
-      border-bottom: none !important;
-      padding: 1.5rem 1.75rem 2rem;
+    .nav-mobile-overlay.open .nmfs-bottom {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .nav-mobile-book {
-      display: block;
+    .nmfs-book {
       font-family: 'Jost', sans-serif;
       font-size: 0.65rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--navy);
       background: var(--gold);
-      padding: 0.9rem 1.5rem;
+      padding: 0.9rem 2.2rem;
       text-decoration: none;
       font-weight: 400;
-      text-align: center;
       transition: background 0.3s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
     }
-    .nav-mobile-book:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .nav-mobile-book:active { transform: translateY(0); }
-    /* footer address inside panel */
-    .nav-mobile-footer {
-      padding: 1rem 1.75rem 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
+    .nmfs-book:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .nmfs-book:active { transform: translateY(0); }
+    .nmfs-location {
       font-family: 'Jost', sans-serif;
       font-size: 0.58rem;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-      line-height: 1.8;
+      color: rgba(255,255,255,0.28);
     }
 
     /* ── RESPONSIVE: tablet / small (≤900px) ── */
@@ -1542,31 +1530,42 @@
     </button>
   </nav>
 
-  <!-- Mobile nav overlay -->
+  <!-- Mobile nav fullscreen overlay -->
   <div class="nav-mobile-overlay" id="nav-mobile-overlay">
-    <div class="nav-mobile-panel" id="nav-mobile-panel">
-      <svg class="nav-mobile-curve" viewBox="0 0 100 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M100,0 L100,1000 C35,750 35,250 100,0 Z" fill="#1a1f3e"/>
-      </svg>
-      <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close menu">&#x2715;</button>
-      <div class="nav-mobile-inner">
-        <div class="nav-mobile-brand">
-          <div class="nav-mobile-brand-name"><strong>Morgan</strong> Lloyd</div>
-          <div class="nav-mobile-brand-sub">
-            <span></span><p>Hair</p><span></span>
-          </div>
-        </div>
-        <ul class="nav-mobile-links">
-          <li class="nav-mobile-item"><a href="services.html" class="nav-mobile-link"><span class="nav-mobile-num">01.</span>Services</a></li>
-          <li class="nav-mobile-item"><a href="#about" class="nav-mobile-link"><span class="nav-mobile-num">02.</span>About</a></li>
-          <li class="nav-mobile-item"><a href="gallery.html" class="nav-mobile-link"><span class="nav-mobile-num">03.</span>Gallery</a></li>
-          <li class="nav-mobile-item"><a href="reviews.html" class="nav-mobile-link"><span class="nav-mobile-num">04.</span>Reviews</a></li>
-          <li class="nav-mobile-item"><a href="team.html" class="nav-mobile-link"><span class="nav-mobile-num">05.</span>Meet the Team</a></li>
-          <li class="nav-mobile-book-item"><a href="booking.html" class="nav-mobile-book">Book an Appointment</a></li>
-        </ul>
-        <div class="nav-mobile-footer">Sketty · Swansea<br>Est. 2015</div>
-      </div>
+    <nav class="nmfs-nav">
+      <div class="nmfs-rule"></div>
+      <a href="services.html" class="nmfs-link" style="--i:0">
+        <div class="nmfs-link-left"><span class="nmfs-num">01</span><span class="nmfs-text">Services</span></div>
+        <span class="nmfs-arrow">&#x2192;</span>
+      </a>
+      <div class="nmfs-rule"></div>
+      <a href="#about" class="nmfs-link" style="--i:1">
+        <div class="nmfs-link-left"><span class="nmfs-num">02</span><span class="nmfs-text">About</span></div>
+        <span class="nmfs-arrow">&#x2192;</span>
+      </a>
+      <div class="nmfs-rule"></div>
+      <a href="gallery.html" class="nmfs-link" style="--i:2">
+        <div class="nmfs-link-left"><span class="nmfs-num">03</span><span class="nmfs-text">Gallery</span></div>
+        <span class="nmfs-arrow">&#x2192;</span>
+      </a>
+      <div class="nmfs-rule"></div>
+      <a href="reviews.html" class="nmfs-link" style="--i:3">
+        <div class="nmfs-link-left"><span class="nmfs-num">04</span><span class="nmfs-text">Reviews</span></div>
+        <span class="nmfs-arrow">&#x2192;</span>
+      </a>
+      <div class="nmfs-rule"></div>
+      <a href="team.html" class="nmfs-link" style="--i:4">
+        <div class="nmfs-link-left"><span class="nmfs-num">05</span><span class="nmfs-text">Meet the Team</span></div>
+        <span class="nmfs-arrow">&#x2192;</span>
+      </a>
+      <div class="nmfs-rule"></div>
+    </nav>
+    <div class="nmfs-bottom">
+      <a href="booking.html" class="nmfs-book">Book an Appointment</a>
+      <p class="nmfs-location">Sketty &middot; Swansea &middot; Est. 2015</p>
     </div>
+    <!-- kept for JS event listener compatibility -->
+    <button id="nav-mobile-close" style="display:none" aria-hidden="true"></button>
   </div>
 
   <!-- ── HERO ── -->
