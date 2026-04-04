@@ -1220,20 +1220,16 @@
     .nmfs-link:hover .nmfs-num    { color: var(--gold); }
     .nmfs-link:hover .nmfs-arrow  { opacity: 1; transform: translateX(0); }
 
-    /* ── Bottom: CTA + location ── */
-    .nmfs-bottom {
-      position: relative;
-      z-index: 1;
-      padding: 1.5rem 2.25rem 2.5rem;
+    /* ── Book button inside nav ── */
+    .nmfs-book-wrap {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.1rem;
+      justify-content: center;
+      padding: 1.6rem 0 0.2rem;
       opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.5s 0.45s ease, transform 0.5s 0.45s cubic-bezier(0.25,1,0.5,1);
+      transform: translateY(14px);
+      transition: opacity 0.55s 0.48s ease, transform 0.55s 0.48s cubic-bezier(0.25,1,0.5,1);
     }
-    .nav-mobile-overlay.open .nmfs-bottom {
+    .nav-mobile-overlay.open .nmfs-book-wrap {
       opacity: 1;
       transform: translateY(0);
     }
@@ -1244,13 +1240,29 @@
       text-transform: uppercase;
       color: var(--navy);
       background: var(--gold);
-      padding: 0.9rem 2.2rem;
+      padding: 0.9rem 2.4rem;
       text-decoration: none;
       font-weight: 400;
       transition: background 0.3s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
     }
     .nmfs-book:hover { background: var(--gold-light); transform: translateY(-2px); }
     .nmfs-book:active { transform: translateY(0); }
+
+    /* ── Bottom: location only ── */
+    .nmfs-bottom {
+      position: relative;
+      z-index: 1;
+      padding: 1rem 2.25rem 2rem;
+      display: flex;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.5s 0.55s ease, transform 0.5s 0.55s cubic-bezier(0.25,1,0.5,1);
+    }
+    .nav-mobile-overlay.open .nmfs-bottom {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .nmfs-location {
       font-family: 'Jost', sans-serif;
       font-size: 0.58rem;
@@ -1559,9 +1571,11 @@
         <span class="nmfs-arrow">&#x2192;</span>
       </a>
       <div class="nmfs-rule"></div>
+      <div class="nmfs-book-wrap">
+        <a href="booking.html" class="nmfs-book">Book an Appointment</a>
+      </div>
     </nav>
     <div class="nmfs-bottom">
-      <a href="booking.html" class="nmfs-book">Book an Appointment</a>
       <p class="nmfs-location">Sketty &middot; Swansea &middot; Est. 2015</p>
     </div>
     <!-- kept for JS event listener compatibility -->
