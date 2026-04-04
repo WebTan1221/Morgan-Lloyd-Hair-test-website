@@ -1105,19 +1105,41 @@
       transition: background 0.5s ease;
     }
     .nav-mobile-overlay.open {
-      background: rgba(10,12,30,0.5);
+      background: rgba(10,12,30,0.72);
       pointer-events: auto;
     }
     .nav-mobile-panel {
       position: relative;
-      width: min(60vw, 280px);
+      width: min(72vw, 300px);
       height: 100%;
-      background: #fff;
+      background: var(--navy);
       display: flex;
       flex-direction: column;
       transform: translateX(calc(100% + 100px));
       transition: transform 0.75s cubic-bezier(0.76,0,0.24,1);
       overflow: visible;
+      box-shadow: -20px 0 60px rgba(0,0,0,0.5);
+    }
+    /* subtle grain on panel */
+    .nav-mobile-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    }
+    /* gold edge line */
+    .nav-mobile-panel::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(201,169,110,0.5) 20%, rgba(201,169,110,0.25) 80%, transparent);
+      pointer-events: none;
+      z-index: 1;
     }
     .nav-mobile-overlay.open .nav-mobile-panel { transform: translateX(0); }
     .nav-mobile-curve {
@@ -1129,76 +1151,125 @@
       pointer-events: none;
     }
     .nav-mobile-inner {
-      padding: 7rem 1.5rem 2rem;
+      position: relative;
+      z-index: 2;
+      padding: 0;
       display: flex;
       flex-direction: column;
       height: 100%;
       overflow-y: auto;
     }
+    /* panel top: wordmark block */
+    .nav-mobile-brand {
+      padding: 2rem 1.75rem 1.5rem;
+      border-bottom: 1px solid rgba(201,169,110,0.15);
+    }
+    .nav-mobile-brand-name {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .nav-mobile-brand-name strong { font-weight: 500; }
+    .nav-mobile-brand-sub {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.3rem;
+    }
+    .nav-mobile-brand-sub span {
+      flex: 1;
+      height: 1px;
+      background: rgba(201,169,110,0.4);
+    }
+    .nav-mobile-brand-sub p {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
     .nav-mobile-close {
       position: absolute;
-      top: 1.25rem; right: 1.25rem;
+      top: 1.1rem; right: 1.1rem;
       background: none;
-      border: none;
-      color: rgba(26,26,46,0.5);
-      font-size: 1rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.55);
+      font-size: 0.7rem;
       line-height: 1;
       cursor: pointer;
-      padding: 0.4rem;
-      z-index: 1;
-      transition: color 0.2s ease;
+      padding: 0.4rem 0.5rem;
+      z-index: 10;
+      transition: border-color 0.2s ease, color 0.2s ease;
     }
-    .nav-mobile-close:hover { color: var(--text-dark); }
-    .nav-mobile-header {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(26,26,46,0.6);
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(26,26,46,0.12);
-      margin-bottom: 0.25rem;
+    .nav-mobile-close:hover { color: var(--gold); border-color: rgba(201,169,110,0.5); }
+    .nav-mobile-links {
+      list-style: none;
+      padding: 0.5rem 0;
+      margin: 0;
+      flex: 1;
     }
-    .nav-mobile-links { list-style: none; padding: 0; margin: 0; }
-    .nav-mobile-item { border-bottom: 1px solid rgba(26,26,46,0.1); }
+    .nav-mobile-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
     .nav-mobile-link {
       display: flex;
-      align-items: baseline;
-      gap: 0.75rem;
+      align-items: center;
+      gap: 1rem;
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 1.5rem;
-      letter-spacing: -0.01em;
-      color: var(--text-dark);
+      font-weight: 300;
+      font-size: 1.6rem;
+      letter-spacing: 0.01em;
+      color: rgba(255,255,255,0.82);
       text-decoration: none;
-      padding: 0.5rem 0;
-      transition: color 0.25s ease;
+      padding: 0.7rem 1.75rem;
+      transition: color 0.25s ease, padding-left 0.3s cubic-bezier(0.25,1,0.5,1);
     }
-    .nav-mobile-link:hover { color: var(--navy); }
+    .nav-mobile-link:hover {
+      color: #fff;
+      padding-left: 2.25rem;
+    }
+    .nav-mobile-link:hover .nav-mobile-num { color: var(--gold); }
     .nav-mobile-num {
       font-family: 'Jost', sans-serif;
-      font-size: 0.68rem;
+      font-size: 0.6rem;
       font-weight: 300;
-      color: rgba(26,26,46,0.55);
-      letter-spacing: 0.08em;
-      min-width: 1.6rem;
+      color: rgba(201,169,110,0.55);
+      letter-spacing: 0.12em;
+      min-width: 1.4rem;
+      transition: color 0.25s ease;
     }
-    .nav-mobile-book-item { border-bottom: none !important; padding-top: 0.5rem; }
+    .nav-mobile-book-item {
+      border-bottom: none !important;
+      padding: 1.5rem 1.75rem 2rem;
+    }
     .nav-mobile-book {
-      display: inline-block;
+      display: block;
       font-family: 'Jost', sans-serif;
       font-size: 0.65rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--navy);
       background: var(--gold);
-      padding: 0.8rem 1.5rem;
+      padding: 0.9rem 1.5rem;
       text-decoration: none;
       font-weight: 400;
-      margin-top: 0.75rem;
-      transition: background 0.3s ease;
+      text-align: center;
+      transition: background 0.3s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
     }
-    .nav-mobile-book:hover { background: var(--gold-light); }
+    .nav-mobile-book:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .nav-mobile-book:active { transform: translateY(0); }
+    /* footer address inside panel */
+    .nav-mobile-footer {
+      padding: 1rem 1.75rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.8;
+    }
 
     /* ── RESPONSIVE: tablet / small (≤900px) ── */
     @media (max-width: 900px) {
@@ -1475,19 +1546,25 @@
   <div class="nav-mobile-overlay" id="nav-mobile-overlay">
     <div class="nav-mobile-panel" id="nav-mobile-panel">
       <svg class="nav-mobile-curve" viewBox="0 0 100 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M100,0 L100,1000 C35,750 35,250 100,0 Z" fill="#ffffff"/>
+        <path d="M100,0 L100,1000 C35,750 35,250 100,0 Z" fill="#1a1f3e"/>
       </svg>
       <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close menu">&#x2715;</button>
       <div class="nav-mobile-inner">
-        <div class="nav-mobile-header">Navigation</div>
+        <div class="nav-mobile-brand">
+          <div class="nav-mobile-brand-name"><strong>Morgan</strong> Lloyd</div>
+          <div class="nav-mobile-brand-sub">
+            <span></span><p>Hair</p><span></span>
+          </div>
+        </div>
         <ul class="nav-mobile-links">
           <li class="nav-mobile-item"><a href="services.html" class="nav-mobile-link"><span class="nav-mobile-num">01.</span>Services</a></li>
           <li class="nav-mobile-item"><a href="#about" class="nav-mobile-link"><span class="nav-mobile-num">02.</span>About</a></li>
           <li class="nav-mobile-item"><a href="gallery.html" class="nav-mobile-link"><span class="nav-mobile-num">03.</span>Gallery</a></li>
           <li class="nav-mobile-item"><a href="reviews.html" class="nav-mobile-link"><span class="nav-mobile-num">04.</span>Reviews</a></li>
           <li class="nav-mobile-item"><a href="team.html" class="nav-mobile-link"><span class="nav-mobile-num">05.</span>Meet the Team</a></li>
-          <li class="nav-mobile-item nav-mobile-book-item"><a href="booking.html" class="nav-mobile-book">Book an Appointment</a></li>
+          <li class="nav-mobile-book-item"><a href="booking.html" class="nav-mobile-book">Book an Appointment</a></li>
         </ul>
+        <div class="nav-mobile-footer">Sketty · Swansea<br>Est. 2015</div>
       </div>
     </div>
   </div>
