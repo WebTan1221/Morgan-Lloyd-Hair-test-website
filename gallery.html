@@ -112,9 +112,10 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 0.1rem;
-      padding: 0 1.5rem;
+      gap: 0;
+      padding: 0 1.5rem 0;
       margin-bottom: 3rem;
+      border-bottom: 1px solid rgba(26,31,62,0.12);
     }
     .filter-btn {
       font-family: 'Jost', sans-serif;
@@ -122,27 +123,21 @@
       font-weight: 400;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(26,31,62,0.45);
+      color: rgba(26,31,62,0.42);
       background: none;
       border: none;
+      border-bottom: 2px solid transparent;
       cursor: pointer;
-      padding: 0.55rem 1.3rem;
+      padding: 0.7rem 1.4rem 0.65rem;
       position: relative;
-      transition: color 0.3s ease;
+      margin-bottom: -1px;
+      transition: color 0.25s ease, border-color 0.25s ease;
     }
-    .filter-btn::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 1px;
-      background: var(--gold);
-      transition: width 0.35s cubic-bezier(0.25,1,0.5,1);
+    .filter-btn.active {
+      color: var(--navy);
+      border-bottom-color: var(--gold);
+      font-weight: 400;
     }
-    .filter-btn.active { color: var(--text-dark); }
-    .filter-btn.active::after { width: calc(100% - 2.6rem); }
     .filter-btn:hover { color: var(--text-dark); }
     .filter-btn sup {
       font-size: 0.44rem;
@@ -468,11 +463,11 @@
 
     <!-- Filter bar -->
     <div class="gallery-filter-bar">
-      <button class="filter-btn active" data-filter="all">All<sup>18</sup></button>
-      <button class="filter-btn" data-filter="colour">Colour<sup>5</sup></button>
-      <button class="filter-btn" data-filter="balayage">Balayage<sup>4</sup></button>
-      <button class="filter-btn" data-filter="cuts">Cuts<sup>5</sup></button>
-      <button class="filter-btn" data-filter="treatments">Treatments<sup>4</sup></button>
+      <button class="filter-btn active" data-filter="all">All<sup>13</sup></button>
+      <button class="filter-btn" data-filter="colour">Colour<sup>4</sup></button>
+      <button class="filter-btn" data-filter="balayage">Balayage<sup>2</sup></button>
+      <button class="filter-btn" data-filter="cuts">Cuts<sup>4</sup></button>
+      <button class="filter-btn" data-filter="treatments">Treatments<sup>3</sup></button>
     </div>
 
     <!-- Masonry grid -->
@@ -480,35 +475,29 @@
 
       <!-- Colour -->
       <div class="g-item" data-category="colour" data-label="Colour Work">
-        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=720&fit=crop&crop=top&auto=format&q=85" alt="Colour Work" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=720&fit=crop&crop=top&auto=format&q=85" alt="Colour Work" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Colour Work</span><span class="g-item-cat">Colour</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       </div>
 
       <div class="g-item" data-category="colour" data-label="Colour Treatment">
-        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&h=580&fit=crop&crop=top&auto=format&q=85" alt="Colour Treatment" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&h=580&fit=crop&crop=top&auto=format&q=85" alt="Colour Treatment" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Colour Treatment</span><span class="g-item-cat">Colour</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       </div>
 
       <div class="g-item" data-category="colour" data-label="Colour & Style">
-        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=500&fit=crop&crop=top&auto=format&q=85" alt="Colour & Style" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=500&fit=crop&crop=top&auto=format&q=85" alt="Colour & Style" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Colour &amp; Style</span><span class="g-item-cat">Colour</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       </div>
 
-      <div class="g-item" data-category="colour" data-label="Vivid Colour">
-        <img src="https://images.unsplash.com/photo-1569519032609-e73e6b73e7bf?w=600&h=680&fit=crop&crop=top&auto=format&q=85" alt="Vivid Colour" loading="lazy" />
-        <div class="g-item-overlay"></div>
-        <div class="g-item-label"><span class="g-item-name">Vivid Colour</span><span class="g-item-cat">Colour</span></div>
-        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-      </div>
 
       <div class="g-item" data-category="colour" data-label="Root Colour">
-        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=560&fit=crop&crop=top&auto=format&q=85" alt="Root Colour" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=560&fit=crop&crop=top&auto=format&q=85" alt="Root Colour" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Root Colour</span><span class="g-item-cat">Colour</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
@@ -516,93 +505,68 @@
 
       <!-- Balayage -->
       <div class="g-item" data-category="balayage" data-label="Balayage">
-        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&h=700&fit=crop&crop=top&auto=format&q=85" alt="Balayage" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&h=700&fit=crop&crop=top&auto=format&q=85" alt="Balayage" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Balayage</span><span class="g-item-cat">Balayage</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       </div>
 
       <div class="g-item" data-category="balayage" data-label="Balayage Blonde">
-        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=600&h=520&fit=crop&crop=top&auto=format&q=85" alt="Balayage Blonde" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=600&h=520&fit=crop&crop=top&auto=format&q=85" alt="Balayage Blonde" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Balayage Blonde</span><span class="g-item-cat">Balayage</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       </div>
 
-      <div class="g-item" data-category="balayage" data-label="Sun-Kissed Balayage">
-        <img src="https://images.unsplash.com/photo-1522337386822-9d3f48ef3e77?w=600&h=650&fit=crop&crop=top&auto=format&q=85" alt="Sun-Kissed Balayage" loading="lazy" />
-        <div class="g-item-overlay"></div>
-        <div class="g-item-label"><span class="g-item-name">Sun-Kissed Balayage</span><span class="g-item-cat">Balayage</span></div>
-        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-      </div>
-
-      <div class="g-item" data-category="balayage" data-label="Balayage Result">
-        <img src="https://images.unsplash.com/photo-1520341280432-4749d4d7bcf1?w=600&h=600&fit=crop&crop=top&auto=format&q=85" alt="Balayage Result" loading="lazy" />
-        <div class="g-item-overlay"></div>
-        <div class="g-item-label"><span class="g-item-name">Balayage Result</span><span class="g-item-cat">Balayage</span></div>
-        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-      </div>
 
       <!-- Cuts -->
       <div class="g-item" data-category="cuts" data-label="Precision Cut">
-        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=600&fit=crop&crop=top&auto=format&q=85" alt="Precision Cut" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=600&fit=crop&crop=top&auto=format&q=85" alt="Precision Cut" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Precision Cut</span><span class="g-item-cat">Cuts</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       </div>
 
       <div class="g-item" data-category="cuts" data-label="Curly Cut">
-        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&h=560&fit=crop&crop=center&auto=format&q=85" alt="Curly Cut" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&h=560&fit=crop&crop=center&auto=format&q=85" alt="Curly Cut" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Curly Cut</span><span class="g-item-cat">Cuts</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       </div>
 
       <div class="g-item" data-category="cuts" data-label="Bob Cut">
-        <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=600&h=720&fit=crop&crop=top&auto=format&q=85" alt="Bob Cut" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=600&h=720&fit=crop&crop=top&auto=format&q=85" alt="Bob Cut" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Bob Cut</span><span class="g-item-cat">Cuts</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       </div>
 
       <div class="g-item" data-category="cuts" data-label="Blowdry Finish">
-        <img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=600&h=480&fit=crop&crop=top&auto=format&q=85" alt="Blowdry Finish" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=600&h=480&fit=crop&crop=top&auto=format&q=85" alt="Blowdry Finish" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Blowdry Finish</span><span class="g-item-cat">Cuts</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       </div>
 
-      <div class="g-item" data-category="cuts" data-label="Cut & Style">
-        <img src="https://images.unsplash.com/photo-1635776063584-2d4cfe9f5dc4?w=600&h=640&fit=crop&crop=top&auto=format&q=85" alt="Cut & Style" loading="lazy" />
-        <div class="g-item-overlay"></div>
-        <div class="g-item-label"><span class="g-item-name">Cut &amp; Style</span><span class="g-item-cat">Cuts</span></div>
-        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-      </div>
 
       <!-- Treatments -->
       <div class="g-item" data-category="treatments" data-label="Blowdry Treatment">
-        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&h=600&fit=crop&crop=top&auto=format&q=85" alt="Blowdry Treatment" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&h=600&fit=crop&crop=top&auto=format&q=85" alt="Blowdry Treatment" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Blowdry Treatment</span><span class="g-item-cat">Treatments</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       </div>
 
       <div class="g-item" data-category="treatments" data-label="Hair Treatment">
-        <img src="https://images.unsplash.com/photo-1576426863848-c21f53c60b19?w=600&h=520&fit=crop&crop=top&auto=format&q=85" alt="Hair Treatment" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1576426863848-c21f53c60b19?w=600&h=520&fit=crop&crop=top&auto=format&q=85" alt="Hair Treatment" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Hair Treatment</span><span class="g-item-cat">Treatments</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       </div>
 
-      <div class="g-item" data-category="treatments" data-label="Shine Treatment">
-        <img src="https://images.unsplash.com/photo-1570169982453-5a765b3ed574?w=600&h=680&fit=crop&crop=top&auto=format&q=85" alt="Shine Treatment" loading="lazy" />
-        <div class="g-item-overlay"></div>
-        <div class="g-item-label"><span class="g-item-name">Shine Treatment</span><span class="g-item-cat">Treatments</span></div>
-        <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-      </div>
 
       <div class="g-item" data-category="treatments" data-label="Deep Condition">
-        <img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=600&h=440&fit=crop&crop=top&auto=format&q=85" alt="Deep Condition" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=600&h=440&fit=crop&crop=top&auto=format&q=85" alt="Deep Condition" loading="lazy" onerror="this.closest('.g-item').style.display='none'" />
         <div class="g-item-overlay"></div>
         <div class="g-item-label"><span class="g-item-name">Deep Condition</span><span class="g-item-cat">Treatments</span></div>
         <div class="g-item-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
