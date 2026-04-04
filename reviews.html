@@ -159,141 +159,148 @@
     .hero-rating-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; }
     .hero-rating-text { font-family: 'Jost', sans-serif; font-size: 0.62rem; color: rgba(255,255,255,0.5); letter-spacing: 0.15em; text-transform: uppercase; }
 
-    /* ── CAROUSEL SECTION ── */
-    .carousel-section {
-      padding: 3.5rem 0 4rem;
-      background: var(--cream);
-      position: relative;
-    }
-    .carousel-wrapper {
-      position: relative;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 4rem;
-    }
-    .carousel-track {
-      display: flex;
-      overflow-x: scroll;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      gap: 1.5rem;
-      padding-bottom: 0.5rem;
-      cursor: grab;
-    }
-    .carousel-track:active { cursor: grabbing; }
-    .carousel-track::-webkit-scrollbar { display: none; }
-    .review-card {
-      flex: 0 0 340px;
-      scroll-snap-align: center;
+    /* ── TESTIMONIALS COLUMNS ── */
+    .testimonials-section {
       background: var(--navy);
-      padding: 2rem 1.75rem 1.75rem;
+      padding: 4.5rem 1.5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonials-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,169,110,0.06) 0%, transparent 70%);
+    }
+    .testimonials-header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .testimonials-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .testimonials-label span { display: block; width: 24px; height: 1px; background: var(--gold); opacity: 0.6; }
+    .testimonials-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: #fff;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+    .testimonials-title em { font-style: italic; color: var(--gold-light); }
+    .testimonials-sub {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em;
+      margin-top: 0.5rem;
+    }
+    /* columns container — gradient mask fades top & bottom */
+    .testimonials-columns {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      max-height: 680px;
+      overflow: hidden;
+      mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+    }
+    /* individual column */
+    .tcol { width: 280px; flex-shrink: 0; overflow: hidden; }
+    .tcol:nth-child(2) { display: none; }
+    .tcol:nth-child(3) { display: none; }
+    /* scrolling track — content is doubled inside for seamless loop */
+    .tcol-track {
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
-      border-bottom: 3px solid var(--gold);
-      transition: transform 0.25s ease;
+      gap: 1.25rem;
+      padding-bottom: 1.25rem; /* matches gap so loop is gapless */
     }
-    .review-card:hover { transform: translateY(-3px); }
-    .review-card-top {
+    .tcol:nth-child(1) .tcol-track { animation: tcol-scroll 22s linear infinite; }
+    .tcol:nth-child(2) .tcol-track { animation: tcol-scroll 28s linear infinite; }
+    .tcol:nth-child(3) .tcol-track { animation: tcol-scroll 25s linear infinite; }
+    .tcol:hover .tcol-track { animation-play-state: paused; }
+    @keyframes tcol-scroll {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+    /* testimonial card */
+    .tcard {
+      background: var(--warm-white);
+      padding: 1.5rem 1.5rem 1.25rem;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 0.65rem;
+      border-bottom: 2px solid var(--gold);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.32), 0 1px 6px rgba(0,0,0,0.18);
+      width: 280px;
+      flex-shrink: 0;
     }
-    .review-stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.1em; }
-    .review-badge {
+    .tcard-top { display: flex; align-items: center; justify-content: space-between; }
+    .tcard-stars { color: var(--gold); font-size: 0.72rem; letter-spacing: 0.08em; }
+    .tcard-badge {
       font-family: 'Jost', sans-serif;
-      font-size: 0.5rem;
-      letter-spacing: 0.22em;
+      font-size: 0.46rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--navy);
-      background: var(--gold);
-      padding: 0.25rem 0.6rem;
-      white-space: nowrap;
+      border: 1px solid rgba(201,169,110,0.45);
+      padding: 0.18rem 0.5rem;
     }
-    .review-quote {
+    .tcard-quote {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
+      font-size: 2rem;
       line-height: 0.7;
       color: var(--gold);
       opacity: 0.4;
     }
-    .review-text {
+    .tcard-text {
       font-family: 'Jost', sans-serif;
-      font-size: 0.82rem;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.72);
-      flex: 1;
+      font-size: 0.78rem;
+      line-height: 1.72;
+      color: var(--text-dark);
     }
-    .review-footer {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 0.75rem;
+    .tcard-footer {
+      border-top: 1px solid rgba(26,26,46,0.08);
+      padding-top: 0.65rem;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
     }
-    .review-author {
+    .tcard-author {
       font-family: 'Jost', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 500;
-      color: #fff;
+      color: var(--text-dark);
       letter-spacing: 0.04em;
     }
-    .review-location {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.6rem;
-      color: rgba(255,255,255,0.35);
-      letter-spacing: 0.08em;
-      margin-top: 0.15rem;
-    }
-    .review-date {
+    .tcard-location {
       font-family: 'Jost', sans-serif;
       font-size: 0.58rem;
-      color: rgba(255,255,255,0.25);
-      letter-spacing: 0.08em;
-      text-align: right;
+      color: rgba(26,26,46,0.42);
+      letter-spacing: 0.06em;
+      margin-top: 0.1rem;
     }
-
-    /* ── CAROUSEL ARROWS ── */
-    .carousel-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      background: var(--navy);
-      border: 1px solid rgba(201,169,110,0.3);
-      color: var(--gold);
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.25s ease, border-color 0.25s ease;
-      z-index: 2;
-      flex-shrink: 0;
+    .tcard-date {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.54rem;
+      color: rgba(26,26,46,0.28);
+      letter-spacing: 0.06em;
     }
-    .carousel-arrow:hover { background: var(--navy-deep); border-color: var(--gold); }
-    .carousel-arrow.prev { left: 0; }
-    .carousel-arrow.next { right: 0; }
-    .carousel-arrow.disabled { opacity: 0.25; pointer-events: none; }
-
-    /* ── DOTS ── */
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 1.75rem;
-    }
-    .carousel-dot {
-      width: 6px;
-      height: 6px;
-      background: rgba(26,31,62,0.2);
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background 0.25s ease, transform 0.25s ease;
-    }
-    .carousel-dot.active { background: var(--navy); transform: scale(1.3); }
 
     /* ── CTA ── */
     .reviews-cta {
@@ -341,6 +348,12 @@
     .footer-divider { width:100%; height:1px; background:rgba(255,255,255,0.06); margin:1rem 0; }
 
     /* ── RESPONSIVE ── */
+    @media (min-width: 640px) {
+      .tcol:nth-child(2) { display: block; }
+    }
+    @media (min-width: 1024px) {
+      .tcol:nth-child(3) { display: block; }
+    }
     @media (max-width: 900px) {
       nav { padding:1.25rem 1.5rem; }
       .nav-links { display:none; }
@@ -348,8 +361,6 @@
       .nav-hamburger { display:flex; }
       .nav-mobile-overlay { display:flex; }
       .page-hero { padding:6rem 1.5rem 3rem; }
-      .carousel-wrapper { padding:0 3rem; }
-      .review-card { flex:0 0 280px; }
       footer { padding:3rem 1.5rem 1.5rem; }
       .footer-inner { grid-template-columns:1fr 1fr; gap:2rem; }
       .footer-inner > div:first-child { grid-column:1 / -1; }
@@ -358,9 +369,8 @@
     }
     @media (max-width: 600px) {
       .page-hero { padding:6rem 1.25rem 2.75rem; }
-      .carousel-wrapper { padding:0 2.5rem; }
-      .review-card { flex:0 0 calc(100vw - 5rem); padding:1.75rem 1.5rem 1.5rem; }
-      .carousel-arrow { width:34px; height:34px; font-size:0.85rem; }
+      .testimonials-section { padding:3.5rem 1rem 4rem; }
+      .testimonials-columns { max-height:560px; }
       footer { padding:2rem 1.25rem 1rem; }
       .footer-inner { grid-template-columns:1fr 1fr; gap:1.25rem; padding-bottom:1.25rem; }
       .footer-bottom { font-size:0.6rem; }
@@ -458,160 +468,149 @@
     </div>
   </div>
 
-  <!-- ── CAROUSEL ── -->
-  <section class="carousel-section">
-    <div class="carousel-wrapper">
-      <button class="carousel-arrow prev" id="rev-prev" aria-label="Previous">&#8592;</button>
-      <div class="carousel-track" id="rev-track">
-
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Balayage</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">Honestly the best hair experience I've ever had. My balayage came out absolutely stunning — exactly what I wanted. The colour is so natural and the finish is flawless. I'll never go anywhere else.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Sophie R.</div>
-              <div class="review-location">Swansea</div>
-            </div>
-            <div class="review-date">Jan 2026</div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Colour</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">The atmosphere is incredible and the team are so talented. I came in with a vague idea and left with the most beautiful colour I've ever had. Everyone keeps asking where I get my hair done.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">James T.</div>
-              <div class="review-location">Mumbles</div>
-            </div>
-            <div class="review-date">Dec 2025</div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Cut &amp; Style</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">From the moment I walked in, I felt completely at ease. The consultation was thorough, the cut was perfect, and I left feeling like a new person. Truly exceptional service from start to finish.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Amara K.</div>
-              <div class="review-location">Sketty</div>
-            </div>
-            <div class="review-date">Nov 2025</div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Bridal Hair</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">I had my bridal hair done here and it was everything I dreamed of. The team went above and beyond — multiple trials, kept calm on the day, and the result was absolutely breathtaking.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Erin W.</div>
-              <div class="review-location">Gower</div>
-            </div>
-            <div class="review-date">Oct 2025</div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Blowdry</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">I pop in for a blowdry before every big occasion and the result is always incredible. The team are warm, professional and genuinely passionate. My absolute go-to place in Swansea.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Caitlin M.</div>
-              <div class="review-location">Uplands</div>
-            </div>
-            <div class="review-date">Feb 2026</div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Highlights</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">Had full head highlights for the first time and I was so nervous. The stylist took the time to explain everything and the result was gorgeous. Natural, bright and exactly the shade I wanted.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Rhys D.</div>
-              <div class="review-location">Sketty</div>
-            </div>
-            <div class="review-date">Mar 2026</div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Treatment</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">My hair was so damaged from years of colouring. One treatment session here and the difference was remarkable — silky, strong and so healthy looking. I've been coming back every month since.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Naomi F.</div>
-              <div class="review-location">Bishopston</div>
-            </div>
-            <div class="review-date">Jan 2026</div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Cut &amp; Style</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">I've tried many salons in Swansea and nothing compares to Morgan Lloyd Hair. The attention to detail is unmatched. I walked out with the most precise, beautiful cut I've ever had. Brilliant.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Lowri P.</div>
-              <div class="review-location">Llansamlet</div>
-            </div>
-            <div class="review-date">Mar 2026</div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card-top">
-            <div class="review-stars">★★★★★</div>
-            <span class="review-badge">Toner &amp; Gloss</span>
-          </div>
-          <div class="review-quote">"</div>
-          <p class="review-text">Came in to refresh my blonde with a toner and the result was stunning. The colour is so vibrant. The salon itself is gorgeous too — very relaxed, premium atmosphere. Highly recommend.</p>
-          <div class="review-footer">
-            <div>
-              <div class="review-author">Tom G.</div>
-              <div class="review-location">Mumbles</div>
-            </div>
-            <div class="review-date">Feb 2026</div>
-          </div>
-        </div>
-
-      </div>
-      <button class="carousel-arrow next" id="rev-next" aria-label="Next">&#8594;</button>
+  <!-- ── TESTIMONIALS ── -->
+  <section class="testimonials-section">
+    <div class="testimonials-header">
+      <div class="testimonials-label"><span></span>What our clients say<span></span></div>
+      <div class="testimonials-title">Words from <em>happy clients</em></div>
+      <p class="testimonials-sub">Every review is genuine — no filters, just honest experiences</p>
     </div>
-    <div class="carousel-dots" id="rev-dots"></div>
+
+    <div class="testimonials-columns">
+
+      <!-- Column 1 -->
+      <div class="tcol">
+        <div class="tcol-track">
+          <!-- set A -->
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Balayage</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">Honestly the best hair experience I've ever had. My balayage came out absolutely stunning — exactly what I wanted. The colour is so natural and the finish is flawless. I'll never go anywhere else.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Sophie R.</div><div class="tcard-location">Swansea</div></div><div class="tcard-date">Jan 2026</div></div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Cut &amp; Style</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">From the moment I walked in, I felt completely at ease. The consultation was thorough, the cut was perfect, and I left feeling like a new person. Truly exceptional service from start to finish.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Amara K.</div><div class="tcard-location">Sketty</div></div><div class="tcard-date">Nov 2025</div></div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Treatment</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">My hair was so damaged from years of colouring. One treatment session here and the difference was remarkable — silky, strong and so healthy looking. I've been coming back every month since.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Naomi F.</div><div class="tcard-location">Bishopston</div></div><div class="tcard-date">Jan 2026</div></div>
+          </div>
+          <!-- set B (duplicate for seamless loop) -->
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Balayage</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">Honestly the best hair experience I've ever had. My balayage came out absolutely stunning — exactly what I wanted. The colour is so natural and the finish is flawless. I'll never go anywhere else.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Sophie R.</div><div class="tcard-location">Swansea</div></div><div class="tcard-date">Jan 2026</div></div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Cut &amp; Style</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">From the moment I walked in, I felt completely at ease. The consultation was thorough, the cut was perfect, and I left feeling like a new person. Truly exceptional service from start to finish.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Amara K.</div><div class="tcard-location">Sketty</div></div><div class="tcard-date">Nov 2025</div></div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Treatment</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">My hair was so damaged from years of colouring. One treatment session here and the difference was remarkable — silky, strong and so healthy looking. I've been coming back every month since.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Naomi F.</div><div class="tcard-location">Bishopston</div></div><div class="tcard-date">Jan 2026</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="tcol">
+        <div class="tcol-track">
+          <!-- set A -->
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Colour</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">The atmosphere is incredible and the team are so talented. I came in with a vague idea and left with the most beautiful colour I've ever had. Everyone keeps asking where I get my hair done.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">James T.</div><div class="tcard-location">Mumbles</div></div><div class="tcard-date">Dec 2025</div></div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Bridal Hair</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">I had my bridal hair done here and it was everything I dreamed of. The team went above and beyond — multiple trials, kept calm on the day, and the result was absolutely breathtaking.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Erin W.</div><div class="tcard-location">Gower</div></div><div class="tcard-date">Oct 2025</div></div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Cut &amp; Style</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">I've tried many salons in Swansea and nothing compares to Morgan Lloyd Hair. The attention to detail is unmatched. I walked out with the most precise, beautiful cut I've ever had. Brilliant.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Lowri P.</div><div class="tcard-location">Llansamlet</div></div><div class="tcard-date">Mar 2026</div></div>
+          </div>
+          <!-- set B (duplicate for seamless loop) -->
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Colour</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">The atmosphere is incredible and the team are so talented. I came in with a vague idea and left with the most beautiful colour I've ever had. Everyone keeps asking where I get my hair done.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">James T.</div><div class="tcard-location">Mumbles</div></div><div class="tcard-date">Dec 2025</div></div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Bridal Hair</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">I had my bridal hair done here and it was everything I dreamed of. The team went above and beyond — multiple trials, kept calm on the day, and the result was absolutely breathtaking.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Erin W.</div><div class="tcard-location">Gower</div></div><div class="tcard-date">Oct 2025</div></div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Cut &amp; Style</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">I've tried many salons in Swansea and nothing compares to Morgan Lloyd Hair. The attention to detail is unmatched. I walked out with the most precise, beautiful cut I've ever had. Brilliant.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Lowri P.</div><div class="tcard-location">Llansamlet</div></div><div class="tcard-date">Mar 2026</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="tcol">
+        <div class="tcol-track">
+          <!-- set A -->
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Blowdry</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">I pop in for a blowdry before every big occasion and the result is always incredible. The team are warm, professional and genuinely passionate. My absolute go-to place in Swansea.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Caitlin M.</div><div class="tcard-location">Uplands</div></div><div class="tcard-date">Feb 2026</div></div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Highlights</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">Had full head highlights for the first time and I was so nervous. The stylist took the time to explain everything and the result was gorgeous. Natural, bright and exactly the shade I wanted.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Rhys D.</div><div class="tcard-location">Sketty</div></div><div class="tcard-date">Mar 2026</div></div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Toner &amp; Gloss</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">Came in to refresh my blonde with a toner and the result was stunning. The colour is so vibrant. The salon itself is gorgeous too — very relaxed, premium atmosphere. Highly recommend.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Tom G.</div><div class="tcard-location">Mumbles</div></div><div class="tcard-date">Feb 2026</div></div>
+          </div>
+          <!-- set B (duplicate for seamless loop) -->
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Blowdry</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">I pop in for a blowdry before every big occasion and the result is always incredible. The team are warm, professional and genuinely passionate. My absolute go-to place in Swansea.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Caitlin M.</div><div class="tcard-location">Uplands</div></div><div class="tcard-date">Feb 2026</div></div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Highlights</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">Had full head highlights for the first time and I was so nervous. The stylist took the time to explain everything and the result was gorgeous. Natural, bright and exactly the shade I wanted.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Rhys D.</div><div class="tcard-location">Sketty</div></div><div class="tcard-date">Mar 2026</div></div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><span class="tcard-stars">★★★★★</span><span class="tcard-badge">Toner &amp; Gloss</span></div>
+            <div class="tcard-quote">"</div>
+            <p class="tcard-text">Came in to refresh my blonde with a toner and the result was stunning. The colour is so vibrant. The salon itself is gorgeous too — very relaxed, premium atmosphere. Highly recommend.</p>
+            <div class="tcard-footer"><div><div class="tcard-author">Tom G.</div><div class="tcard-location">Mumbles</div></div><div class="tcard-date">Feb 2026</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </section>
 
   <!-- ── CTA ── -->
@@ -699,133 +698,6 @@
     mobileOverlay.addEventListener('click', e => { if (e.target === mobileOverlay) closeOverlay(); });
     mobileOverlay.querySelectorAll('a').forEach(link => link.addEventListener('click', closeOverlay));
 
-    // ── INFINITE CENTER CAROUSEL ──
-    (function() {
-      const track = document.getElementById('rev-track');
-      const dotsContainer = document.getElementById('rev-dots');
-      const prevBtn = document.getElementById('rev-prev');
-      const nextBtn = document.getElementById('rev-next');
-
-      // Collect original cards before cloning
-      const origCards = Array.from(track.querySelectorAll('.review-card'));
-      const N = origCards.length;
-
-      // Append end clones
-      origCards.forEach(card => {
-        const clone = card.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        track.appendChild(clone);
-      });
-      // Prepend start clones (in same order so layout = [startClone0..N-1][real0..N-1][endClone0..N-1])
-      for (let i = N - 1; i >= 0; i--) {
-        const clone = origCards[i].cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        track.insertBefore(clone, track.firstChild);
-      }
-
-      const allCards = Array.from(track.children);
-
-      // Returns the scrollLeft value that would center allCards[absIdx] in the track viewport
-      function getScrollLeft(absIdx) {
-        const card = allCards[absIdx];
-        const trackRect = track.getBoundingClientRect();
-        const cardRect = card.getBoundingClientRect();
-        const offset = (cardRect.left + cardRect.width / 2) - (trackRect.left + trackRect.width / 2);
-        return track.scrollLeft + offset;
-      }
-
-      function getRealIndex(absIdx) {
-        return ((absIdx - N) % N + N) % N;
-      }
-
-      function getAbsIndex() {
-        const trackRect = track.getBoundingClientRect();
-        const trackCenter = trackRect.left + trackRect.width / 2;
-        let closest = N, minDist = Infinity;
-        allCards.forEach((card, i) => {
-          const rect = card.getBoundingClientRect();
-          const dist = Math.abs((rect.left + rect.width / 2) - trackCenter);
-          if (dist < minDist) { minDist = dist; closest = i; }
-        });
-        return closest;
-      }
-
-      // Build N dots
-      for (let i = 0; i < N; i++) {
-        const dot = document.createElement('button');
-        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
-        const idx = i;
-        dot.addEventListener('click', () => {
-          track.scrollTo({ left: getScrollLeft(N + idx), behavior: 'smooth' });
-        });
-        dotsContainer.appendChild(dot);
-      }
-      const dots = Array.from(dotsContainer.querySelectorAll('.carousel-dot'));
-
-      function updateDots(realIdx) {
-        dots.forEach((d, i) => d.classList.toggle('active', i === realIdx));
-      }
-
-      // Click any card to center it
-      allCards.forEach((card, absIdx) => {
-        card.addEventListener('click', () => {
-          track.scrollTo({ left: getScrollLeft(absIdx), behavior: 'smooth' });
-        });
-      });
-
-      // Arrow buttons
-      prevBtn.addEventListener('click', () => {
-        const abs = getAbsIndex();
-        track.scrollTo({ left: getScrollLeft(abs - 1), behavior: 'smooth' });
-      });
-      nextBtn.addEventListener('click', () => {
-        const abs = getAbsIndex();
-        track.scrollTo({ left: getScrollLeft(abs + 1), behavior: 'smooth' });
-      });
-      // Remove disabled state — infinite loop never disables arrows
-      prevBtn.classList.remove('disabled');
-      nextBtn.classList.remove('disabled');
-
-      // Scroll: update dots + loop teleport
-      let settleTimer;
-      track.addEventListener('scroll', () => {
-        clearTimeout(settleTimer);
-        const abs = getAbsIndex();
-        updateDots(getRealIndex(abs));
-        settleTimer = setTimeout(() => {
-          if (abs < N) {
-            track.scrollLeft = getScrollLeft(abs + N);
-          } else if (abs >= 2 * N) {
-            track.scrollLeft = getScrollLeft(abs - N);
-          }
-        }, 150);
-      }, { passive: true });
-
-      // Cancel loop teleport during drag
-      track.addEventListener('mousedown', () => clearTimeout(settleTimer));
-      track.addEventListener('touchstart', () => clearTimeout(settleTimer), { passive: true });
-
-      // Drag to scroll
-      let isDown = false, startX, scrollStart;
-      track.addEventListener('mousedown', e => {
-        isDown = true; startX = e.pageX - track.offsetLeft; scrollStart = track.scrollLeft;
-        track.style.cursor = 'grabbing';
-      });
-      track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
-      track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
-      track.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        e.preventDefault();
-        track.scrollLeft = scrollStart - (e.pageX - track.offsetLeft - startX);
-      });
-
-      // Initialize: center the first real card
-      requestAnimationFrame(() => {
-        track.scrollLeft = getScrollLeft(N);
-        updateDots(0);
-      });
-    })();
   </script>
 </body>
 </html>
