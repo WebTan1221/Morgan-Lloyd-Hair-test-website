@@ -65,23 +65,45 @@
     .nav-book-btn:hover { background: var(--gold-light); }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
     .nav-hamburger span { display: block; width: 24px; height: 1px; background: #fff; }
-    .nav-mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(10,12,30,0); z-index: 99; justify-content: flex-end; transition: background 0.5s ease; pointer-events: none; }
-    .nav-mobile-overlay.open { background: rgba(10,12,30,0.5); pointer-events: auto; }
-    .nav-mobile-panel { position: relative; width: min(60vw, 280px); height: 100%; background: #fff; display: flex; flex-direction: column; transform: translateX(calc(100% + 100px)); transition: transform 0.75s cubic-bezier(0.76,0,0.24,1); overflow: visible; }
-    .nav-mobile-overlay.open .nav-mobile-panel { transform: translateX(0); }
-    .nav-mobile-curve { position: absolute; top: 0; left: -99px; width: 100px; height: 100%; pointer-events: none; }
-    .nav-mobile-inner { padding: 7rem 1.5rem 2rem; display: flex; flex-direction: column; height: 100%; overflow-y: auto; }
-    .nav-mobile-close { position: absolute; top: 1.25rem; right: 1.25rem; background: none; border: none; color: rgba(26,26,46,0.5); font-size: 1rem; line-height: 1; cursor: pointer; padding: 0.4rem; z-index: 1; transition: color 0.2s ease; }
-    .nav-mobile-close:hover { color: var(--text-dark); }
-    .nav-mobile-header { font-family: 'Jost', sans-serif; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(26,26,46,0.6); padding-bottom: 1rem; border-bottom: 1px solid rgba(26,26,46,0.12); margin-bottom: 0.25rem; }
-    .nav-mobile-links { list-style: none; padding: 0; margin: 0; }
-    .nav-mobile-item { border-bottom: 1px solid rgba(26,26,46,0.1); }
-    .nav-mobile-link { display: flex; align-items: baseline; gap: 0.75rem; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.5rem; letter-spacing: -0.01em; color: var(--text-dark); text-decoration: none; padding: 0.5rem 0; transition: color 0.25s ease; }
-    .nav-mobile-link:hover { color: var(--navy); }
-    .nav-mobile-num { font-family: 'Jost', sans-serif; font-size: 0.68rem; font-weight: 300; color: rgba(26,26,46,0.55); letter-spacing: 0.08em; min-width: 1.6rem; }
-    .nav-mobile-book-item { border-bottom: none !important; padding-top: 0.5rem; }
-    .nav-mobile-book { display: inline-block; font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); background: var(--gold); padding: 0.8rem 1.5rem; text-decoration: none; font-weight: 400; margin-top: 0.75rem; transition: background 0.3s ease; }
-    .nav-mobile-book:hover { background: var(--gold-light); }
+    .nav-hamburger span { transform-origin: center; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-mobile-overlay { display: none; position: fixed; inset: 0; z-index: 99; background: var(--navy); flex-direction: column; pointer-events: none; opacity: 0; transition: opacity 0.45s cubic-bezier(0.25,1,0.5,1); }
+    .nav-mobile-overlay::before { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.035; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); }
+    .nav-mobile-overlay::after { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 50% 45%, rgba(201,169,110,0.07) 0%, transparent 68%); }
+    .nav-mobile-overlay.open { opacity: 1; pointer-events: auto; }
+    .nmfs-nav { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 2.25rem; padding-top: 4.5rem; padding-bottom: 0.5rem; }
+    .nmfs-rule { height: 1px; background: rgba(201,169,110,0.18); opacity: 0; transform: scaleX(0.4); transform-origin: left; transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25,1,0.5,1); }
+    .nav-mobile-overlay.open .nmfs-rule { opacity: 1; transform: scaleX(1); }
+    .nav-mobile-overlay.open .nmfs-rule:nth-of-type(1) { transition-delay: 0.05s; }
+    .nav-mobile-overlay.open .nmfs-rule:nth-of-type(2) { transition-delay: 0.13s; }
+    .nav-mobile-overlay.open .nmfs-rule:nth-of-type(3) { transition-delay: 0.21s; }
+    .nav-mobile-overlay.open .nmfs-rule:nth-of-type(4) { transition-delay: 0.29s; }
+    .nav-mobile-overlay.open .nmfs-rule:nth-of-type(5) { transition-delay: 0.37s; }
+    .nav-mobile-overlay.open .nmfs-rule:nth-of-type(6) { transition-delay: 0.45s; }
+    .nmfs-link { display: flex; align-items: center; justify-content: space-between; padding: 0.95rem 0; text-decoration: none; opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.25,1,0.5,1), color 0.2s ease; }
+    .nav-mobile-overlay.open .nmfs-link { opacity: 1; transform: translateY(0); }
+    .nav-mobile-overlay.open .nmfs-link[style*="--i:0"] { transition-delay: 0.08s; }
+    .nav-mobile-overlay.open .nmfs-link[style*="--i:1"] { transition-delay: 0.16s; }
+    .nav-mobile-overlay.open .nmfs-link[style*="--i:2"] { transition-delay: 0.24s; }
+    .nav-mobile-overlay.open .nmfs-link[style*="--i:3"] { transition-delay: 0.32s; }
+    .nav-mobile-overlay.open .nmfs-link[style*="--i:4"] { transition-delay: 0.40s; }
+    .nmfs-link-left { display: flex; align-items: baseline; gap: 1rem; }
+    .nmfs-num { font-family: 'Jost', sans-serif; font-size: 0.58rem; font-weight: 300; letter-spacing: 0.18em; color: rgba(201,169,110,0.55); transition: color 0.2s ease; min-width: 1.5rem; }
+    .nmfs-text { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.9rem, 7vw, 2.6rem); letter-spacing: -0.01em; color: rgba(255,255,255,0.8); line-height: 1; transition: color 0.2s ease; }
+    .nmfs-arrow { font-size: 0.9rem; color: var(--gold); opacity: 0; transform: translateX(-10px); transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.25,1,0.5,1); }
+    .nmfs-link:hover .nmfs-text { color: #fff; }
+    .nmfs-link:hover .nmfs-num { color: var(--gold); }
+    .nmfs-link:hover .nmfs-arrow { opacity: 1; transform: translateX(0); }
+    .nmfs-book-wrap { display: flex; justify-content: center; padding: 1.6rem 0 0.2rem; padding-left: calc(1.5rem + 1rem); opacity: 0; transform: translateY(14px); transition: opacity 0.55s 0.48s ease, transform 0.55s 0.48s cubic-bezier(0.25,1,0.5,1); }
+    .nav-mobile-overlay.open .nmfs-book-wrap { opacity: 1; transform: translateY(0); }
+    .nmfs-book { font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--navy); background: var(--gold); padding: 0.9rem 2.4rem; text-decoration: none; font-weight: 400; transition: background 0.3s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1); }
+    .nmfs-book:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .nmfs-book:active { transform: translateY(0); }
+    .nmfs-bottom { position: relative; z-index: 1; padding: 1rem 2.25rem 2rem; display: flex; justify-content: center; opacity: 0; transform: translateY(8px); transition: opacity 0.5s 0.55s ease, transform 0.5s 0.55s cubic-bezier(0.25,1,0.5,1); }
+    .nav-mobile-overlay.open .nmfs-bottom { opacity: 1; transform: translateY(0); }
+    .nmfs-location { font-family: 'Jost', sans-serif; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
 
     /* ── PAGE HEADER ── */
     .booking-header {
@@ -646,24 +668,43 @@
     </button>
   </nav>
 
+  <!-- Mobile nav fullscreen overlay -->
   <div class="nav-mobile-overlay" id="nav-mobile-overlay">
-    <div class="nav-mobile-panel" id="nav-mobile-panel">
-      <svg class="nav-mobile-curve" viewBox="0 0 100 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M100,0 L100,1000 C35,750 35,250 100,0 Z" fill="#ffffff"/>
-      </svg>
-      <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close menu">&#x2715;</button>
-      <div class="nav-mobile-inner">
-        <div class="nav-mobile-header">Navigation</div>
-        <ul class="nav-mobile-links">
-          <li class="nav-mobile-item"><a href="services.html" class="nav-mobile-link"><span class="nav-mobile-num">01.</span>Services</a></li>
-          <li class="nav-mobile-item"><a href="index.html#about" class="nav-mobile-link"><span class="nav-mobile-num">02.</span>About</a></li>
-          <li class="nav-mobile-item"><a href="gallery.html" class="nav-mobile-link"><span class="nav-mobile-num">03.</span>Gallery</a></li>
-          <li class="nav-mobile-item"><a href="reviews.html" class="nav-mobile-link"><span class="nav-mobile-num">04.</span>Reviews</a></li>
-          <li class="nav-mobile-item"><a href="team.html" class="nav-mobile-link"><span class="nav-mobile-num">05.</span>Meet the Team</a></li>
-          <li class="nav-mobile-item nav-mobile-book-item"><a href="booking.html" class="nav-mobile-book">Book an Appointment</a></li>
-        </ul>
+    <nav class="nmfs-nav">
+      <div class="nmfs-rule"></div>
+      <a href="services.html" class="nmfs-link" style="--i:0">
+        <div class="nmfs-link-left"><span class="nmfs-num">01</span><span class="nmfs-text">Services</span></div>
+        <span class="nmfs-arrow">&#x2192;</span>
+      </a>
+      <div class="nmfs-rule"></div>
+      <a href="index.html#about" class="nmfs-link" style="--i:1">
+        <div class="nmfs-link-left"><span class="nmfs-num">02</span><span class="nmfs-text">About</span></div>
+        <span class="nmfs-arrow">&#x2192;</span>
+      </a>
+      <div class="nmfs-rule"></div>
+      <a href="gallery.html" class="nmfs-link" style="--i:2">
+        <div class="nmfs-link-left"><span class="nmfs-num">03</span><span class="nmfs-text">Gallery</span></div>
+        <span class="nmfs-arrow">&#x2192;</span>
+      </a>
+      <div class="nmfs-rule"></div>
+      <a href="reviews.html" class="nmfs-link" style="--i:3">
+        <div class="nmfs-link-left"><span class="nmfs-num">04</span><span class="nmfs-text">Reviews</span></div>
+        <span class="nmfs-arrow">&#x2192;</span>
+      </a>
+      <div class="nmfs-rule"></div>
+      <a href="team.html" class="nmfs-link" style="--i:4">
+        <div class="nmfs-link-left"><span class="nmfs-num">05</span><span class="nmfs-text">Meet the Team</span></div>
+        <span class="nmfs-arrow">&#x2192;</span>
+      </a>
+      <div class="nmfs-rule"></div>
+      <div class="nmfs-book-wrap">
+        <a href="booking.html" class="nmfs-book">Book an Appointment</a>
       </div>
+    </nav>
+    <div class="nmfs-bottom">
+      <p class="nmfs-location">Sketty &middot; Swansea &middot; Est. 2015</p>
     </div>
+    <button id="nav-mobile-close" style="display:none" aria-hidden="true"></button>
   </div>
 
   <!-- ── HEADER ── -->
